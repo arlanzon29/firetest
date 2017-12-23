@@ -83,7 +83,7 @@ public class FireApp {
 	}
 	
 	protected void InitializeApp() {
-	
-		FirebaseDatabase.getInstance().getReference(basePath).setValue(this);
+		/*esto se debe modifcar*/
+		FirebaseDatabase.getInstance().getReference(basePath+".").setValue(this);
 	}
 }
