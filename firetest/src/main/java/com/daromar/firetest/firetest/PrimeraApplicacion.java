@@ -1,6 +1,6 @@
 package com.daromar.firetest.firetest;
 
-public class PrimeraApplicacion extends FireApp {
+public class PrimeraApplicacion extends FireAppSQLLite {
 	
 
 	private FireDiv divAutenticar;
@@ -12,8 +12,8 @@ public class PrimeraApplicacion extends FireApp {
 	private FireLabel lblError;
 	
 	
-	public PrimeraApplicacion(String basePath) {
-		super(basePath);
+	public PrimeraApplicacion(String basePath,String sqllite) {
+		super(basePath,sqllite);
 		
 		divAutenticar=new FireDiv("divAutenticar");
 		this.AddControl(divAutenticar);

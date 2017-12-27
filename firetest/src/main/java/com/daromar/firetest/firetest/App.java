@@ -13,6 +13,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
+
 /**
  * Hello world!
  *
@@ -33,7 +35,7 @@ public class App
 	        
 	       
 	}
-    public static void main( String[] args )
+    public static void main( String[] args ) throws ClassNotFoundException
     {
         System.out.println( "Hello World!" );
         
@@ -47,10 +49,12 @@ public class App
 			System.out.println("Error " +e.getMessage());
 		}
        
-       PrimeraApplicacion app=new PrimeraApplicacion("app3");
+       PrimeraApplicacion app=new PrimeraApplicacion("app3","c:/borrar/app3.db");
     //  PrimeraApplicacion app2=new PrimeraApplicacion("app2");
        
      
+      
+       
        
        
        while(true) {
