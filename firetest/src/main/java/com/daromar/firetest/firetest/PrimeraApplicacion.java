@@ -20,7 +20,7 @@ public class PrimeraApplicacion extends FireApp {
 		
 		
 		btnAceptar=new FireButton("btnAceptar");
-		btnAceptar.setCaption("Login");
+		btnAceptar.setCaption("Aceptar");
 		divAutenticar.AddControl(btnAceptar);
 		
 		txtUsuario=new FireTextBox("txtUsuario");
@@ -56,7 +56,7 @@ public class PrimeraApplicacion extends FireApp {
 					divAutenticar.setDisplay("none");
 					divMenu.setDisplay("block");
 				}else {
-					lblError.setValue("Usuario o contraseña incorrecta");
+					lblError.setValue("Usuario o contraseña incorrectarrrr");
 				}
 			}
 			
