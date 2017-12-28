@@ -2,6 +2,8 @@ package com.daromar.firebase;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -10,15 +12,20 @@ implements IFireControl{
 	
 	private String id;
 	private int rows=5;
-	
-
-
+	private ResultSet resultSet=null;
 	private IFireControlsCollection parent=null;
 	private FireApp app=null;
 	private List<FireGridColumn> columns=new ArrayList<FireGridColumn>();
 
 	
+	public ResultSet getResultSet() {
+		return resultSet;
+	}
 
+	public void setResultSet(ResultSet resultSet) {
+		this.resultSet = resultSet;
+	}
+	
 	public FireGrid(String id) {
 		this.id=id;
 	}

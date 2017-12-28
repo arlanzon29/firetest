@@ -2,9 +2,11 @@ package com.daromar.firetest.firetest;
 
 import com.daromar.firebase.FireButton;
 import com.daromar.firebase.FireDiv;
+import com.daromar.firebase.FireEventArg;
 import com.daromar.firebase.FireLabel;
 import com.daromar.firebase.FireTextBox;
 import com.daromar.firebase.IButtonClick;
+import com.daromar.firebase.IFireEvent;
 
 public class PADivAutenticar
 extends FireDiv {
@@ -12,12 +14,13 @@ extends FireDiv {
 	private FireTextBox txtUsuario;
 	private FireTextBox txtContrasena;
 	private FireLabel lblError;
+	private IFireEvent autenticar=null;
 	
 	public PADivAutenticar(String id) {
 		super(id);
 		
 		btnAceptar=new FireButton("btnAceptar");
-		btnAceptar.setCaption("Aceptar2");
+		btnAceptar.setCaption("Aceptar");
 		this.AddControl(btnAceptar);
 		
 		txtUsuario=new FireTextBox("txtUsuario");
@@ -35,7 +38,6 @@ extends FireDiv {
 		PADivAutenticar div=this;
 		
 		btnAceptar.AddClickListener(new IButtonClick() {
-
 			@Override
 			public void Click() {
 				String user=txtUsuario.getValue();
@@ -43,16 +45,21 @@ extends FireDiv {
 				
 				if (user.compareTo("manager")==0 && pass.compareTo("secure")==0) {
 					lblError.setValue("Ok");
-					PrimeraApplicacion pa=(PrimeraApplicacion)div.getApp();
-					pa.AutenticacionCorrecta();
+					if (autenticar!=null) {
+						FireEventArg arg=new FireEventArg(div,"AUTENTICAR");				
+						autenticar.FireEvent(arg);
+					}
 					
-					/*divMenu.setDisplay("block");*/
 				}else {
 					lblError.setValue("Usuario o contraseña incorrectarrrr");
 				}
 			}
 			
 		});
+	}
+	
+	public void AddFireEventAutenticar(IFireEvent autenticar) {
+		this.autenticar=autenticar;
 	}
 
 }

@@ -42,5 +42,19 @@ extends FireApp {
 	     System.err.println(e.getMessage());
 	   }	     
 	}
+	
+	protected ResultSet ExecuteQuery(String sql) {
+		Statement statement;
+		try {
+			statement = connection.createStatement();
+			statement.setQueryTimeout(30);  // set timeout to 30 sec.
+			ResultSet rs = statement.executeQuery(sql);
+			return rs;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 }
