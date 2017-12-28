@@ -1,5 +1,8 @@
 package com.daromar.firebase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.google.firebase.database.FirebaseDatabase;
 
 public class FireGrid
@@ -8,6 +11,7 @@ implements IFireControl{
 	private String id;
 	private IFireControlsCollection parent=null;
 	private FireApp app=null;
+	private List<FireGridColumn> columns=new ArrayList<FireGridColumn>();
 	
 	
 	public FireGrid(String id) {
@@ -34,18 +38,21 @@ implements IFireControl{
 	@Override
 	public void InitializeComponent() {
 		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setValue(String value) {
 		app=this.parent.getApp();
 
 		String path=this.parent.getPath()+"/"+id;
 		
-		FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/Design/"+path+"/Rows").setValue("5");
-		FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/DataSource/"+id).setValue(value);
+		FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/Design/"+path+"/Rows").setValue("5");	
 		
+		for(FireGridColumn col: this.columns)
+		{
+			col.InitializeComponent(app.getBasePath()+"/Design/"+path+"/Columns/");
+		}
+	}
+
+	@Override
+	public void setValue(String value) {	
+		FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/DataSource/"+id).setValue(value);
 	}
 
 	@Override
@@ -53,5 +60,10 @@ implements IFireControl{
 		// TODO Auto-generated method stub
 		this.parent=parent;
 		
+	}
+	
+	public void AddColumn(FireGridColumn column) {
+		columns.add(column);
+		column.setParent(this);
 	}
 }

@@ -12,7 +12,7 @@ public class PrimeraApplicacion extends FireAppSQLLite {
 
 	private PADivAutenticar divAutenticar;
 	private FireDiv divMenu;
-
+	private PADivGrid divGrid;
 	
 	
 	public PrimeraApplicacion(String basePath,String sqllite) {
@@ -25,6 +25,11 @@ public class PrimeraApplicacion extends FireAppSQLLite {
 		divMenu=new FireDiv("divMenu");
 		divMenu.setDisplay("none");
 		this.AddControl(divMenu);
+		
+		divGrid=new PADivGrid("divGrid");
+		divGrid.setDisplay("none");
+		this.AddControl(divGrid);
+		
 		
 		this.InitializeApp();
 	}

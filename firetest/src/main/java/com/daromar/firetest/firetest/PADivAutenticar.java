@@ -8,7 +8,6 @@ import com.daromar.firebase.IButtonClick;
 
 public class PADivAutenticar
 extends FireDiv {
-	
 	private FireButton btnAceptar;
 	private FireTextBox txtUsuario;
 	private FireTextBox txtContrasena;
