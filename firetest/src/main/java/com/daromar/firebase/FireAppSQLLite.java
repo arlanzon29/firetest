@@ -1,4 +1,4 @@
-package com.daromar.firetest.firetest;
+package com.daromar.firebase;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

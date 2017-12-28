@@ -1,5 +1,12 @@
 package com.daromar.firetest.firetest;
 
+import com.daromar.firebase.FireAppSQLLite;
+import com.daromar.firebase.FireButton;
+import com.daromar.firebase.FireDiv;
+import com.daromar.firebase.FireLabel;
+import com.daromar.firebase.FireTextBox;
+import com.daromar.firebase.IButtonClick;
+
 public class PrimeraApplicacion extends FireAppSQLLite {
 	
 

@@ -1,5 +1,6 @@
-package com.daromar.firetest.firetest;
+package com.daromar.firebase;
 
+import com.daromar.firetest.firetest.IFireControlsCollection;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
