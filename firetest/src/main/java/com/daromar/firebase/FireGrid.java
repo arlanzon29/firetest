@@ -9,14 +9,27 @@ public class FireGrid
 implements IFireControl{
 	
 	private String id;
+	private int rows=5;
+	
+
+
 	private IFireControlsCollection parent=null;
 	private FireApp app=null;
 	private List<FireGridColumn> columns=new ArrayList<FireGridColumn>();
+
 	
-	
+
 	public FireGrid(String id) {
 		this.id=id;
 	}
+	
+	public int getRows() {
+		return rows;
+	}
+	public void setRows(int rows) {
+		this.rows = rows;
+	}
+	
 	@Override
 	public String getValue() {
 		// TODO Auto-generated method stub

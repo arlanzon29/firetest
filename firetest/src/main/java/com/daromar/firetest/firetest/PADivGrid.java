@@ -18,6 +18,7 @@ extends FireDiv{
 		// TODO Auto-generated constructor stub
 		
 		grdFamilias=new FireGrid("grdFamilias");
+		grdFamilias.setRows(5);
 		
 		colCodigo=new FireGridColumn("colCodigo");
 		colCodigo.setCaption("Código");
