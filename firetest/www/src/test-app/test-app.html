@@ -1,0 +1,60 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+
+<dom-module id="test-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+   
+    <firebase-app
+      name="testAplicacion"
+      api-key="AIzaSyBLuU9FPL4uDP9jgc31B3wFrqLwKc9dtV8"
+      auth-domain="gamonal29.firebaseapp.com"
+      database-url="https://gamonal29.firebaseio.com">
+    </firebase-app>
+
+    <firebase-document
+        app-name="testAplicacion"
+        path="/app3"
+        data="{{misdatos}}">
+    </firebase-document>
+    <div id="divAutenticar" style="display :{{misdatos.Design.divAutenticar.Display}}">
+       <h2>Introduzca Usuario y contraseña</h2>
+      <paper-input label="{{misdatos.Design.divAutenticar.txtUsuario.Label}}" value="{{misdatos.DataSource.txtUsuario}}"></paper-input>
+      <paper-input label="{{misdatos.Design.divAutenticar.txtContrasena.Label}}" value="{{misdatos.DataSource.txtContrasena}}"></paper-input>
+      <paper-button on-tap="autenticar">{{misdatos.Design.divAutenticar.btnAceptar.Caption}}</paper-button>
+
+      <p>{{misdatos.DataSource.lblError}}<p>
+    </div>
+    <div id="divMenu" style="display :{{misdatos.Design.divMenu.Display}}">
+      Menu{{misdatos.Design.divMenu.Display}}
+    </div>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class TestApp extends Polymer.Element {
+      static get is() { return 'test-app'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'test-app'
+          }
+        };
+      }
+
+      autenticar(){
+        this.set('misdatos.DataSource.btnAceptar',"1");
+      }
+    }
+
+    window.customElements.define(TestApp.is, TestApp);
+  </script>
+</dom-module>
