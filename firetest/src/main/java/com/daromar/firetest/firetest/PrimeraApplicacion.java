@@ -43,8 +43,4 @@ public class PrimeraApplicacion extends FireAppSQLLite {
 		
 		this.InitializeApp();
 	}
-	
-	
-	
-	
 }
