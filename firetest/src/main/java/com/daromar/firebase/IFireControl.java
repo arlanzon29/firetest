@@ -1,7 +1,5 @@
 package com.daromar.firebase;
 
-import com.daromar.firetest.firetest.IFireControlsCollection;
-
 public interface IFireControl {
 	
 	public String getId();

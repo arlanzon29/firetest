@@ -1,10 +1,7 @@
-package com.daromar.firetest.firetest;
+package com.daromar.firebase;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.daromar.firebase.FireApp;
-import com.daromar.firebase.IFireControl;
 
 public interface IFireControlsCollection 
 extends IFireControl{

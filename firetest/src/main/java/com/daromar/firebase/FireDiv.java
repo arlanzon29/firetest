@@ -3,7 +3,6 @@ package com.daromar.firebase;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.daromar.firetest.firetest.IFireControlsCollection;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class FireDiv 
