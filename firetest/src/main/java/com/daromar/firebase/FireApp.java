@@ -15,7 +15,7 @@ public class FireApp
 implements IFireControlsCollection{
 	private String basePath="";
 	private List<IFireControl> controls=new ArrayList<IFireControl>();
-	
+	private IFireEvent eventHandler=null;
 	
 	public boolean isReading() {
 		return reading;
@@ -150,5 +150,12 @@ implements IFireControlsCollection{
 	public FireApp getApp() {
 		// TODO Auto-generated method stub
 		return this;
+	}
+	
+
+	@Override
+	public void AddEventHandler(IFireEvent eventHandler) {
+		// TODO Auto-generated method stub
+		this.eventHandler=eventHandler;
 	}
 }

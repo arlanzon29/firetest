@@ -23,7 +23,7 @@ public class App
 {
 	
 	public void ConectarFirebase() throws Exception{
-		 FileInputStream serviceAccount = new FileInputStream("C:/Users/daniel.rodriguez/git/firetest/firetest/firebase/gamonal29-5da0fbfe8866.json");
+		 FileInputStream serviceAccount = new FileInputStream("C:/Users/pikachu/git/firetest/firetest/firebase/gamonal29-5da0fbfe8866.json");
 
 	        FirebaseOptions options = new FirebaseOptions.Builder()
 	          .setCredential(FirebaseCredentials.fromCertificate(serviceAccount))

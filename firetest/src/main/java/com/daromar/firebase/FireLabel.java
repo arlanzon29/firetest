@@ -4,16 +4,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class FireLabel 
-implements IFireControl {
-	private String value="";
-	private String id;
-	private IFireControlsCollection parent=null;
-	private FireApp app;
-	
+extends FireControl {
 	public FireLabel(String id) {
-		this.id=id;
-		
+		super(id);
+		// TODO Auto-generated constructor stub
 	}
+
+
+
+
+	private String value="";
 	
 	
 
@@ -47,25 +47,4 @@ implements IFireControl {
 
 
 
-	@Override
-	public String getId() {
-		// TODO Auto-generated method stub
-		return id;
-	}
-
-
-
-	@Override
-	public void setId(String value) {
-		// TODO Auto-generated method stub
-		id=value;
-	}
-
-
-
-	@Override
-	public void setParent(IFireControlsCollection parent) {
-		// TODO Auto-generated method stub
-		this.parent=parent;
-	}	
 }

@@ -7,19 +7,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class FireTextBox
-	implements IFireControl {
-	
-	private String value="";
-	private String label="";
-	private String id="";
-	private FireApp app=null;
-	private IFireControlsCollection parent=null;
+	extends FireControl {
 	
 	public FireTextBox(String id) {
-		this.id=id;
+		super(id);
+		// TODO Auto-generated constructor stub
 	}
-	
 
+
+
+	private String label="";
+	
 
 	public String getLabel() {
 		return label;
@@ -34,26 +32,6 @@ public class FireTextBox
 
 
 	@Override
-	public String getValue() {
-		// TODO Auto-generated method stub
-		return value;
-	}
-
-	@Override
-	public void setValue(String value) {
-		// TODO Auto-generated method stub
-		this.value=value;
-		
-		if (!app.isReading()) {
-			FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/DataSource/"+id).setValue(value);
-			
-		}
-	}
-
-
-
-
-	@Override
 	public void InitializeComponent() {
 		app=this.parent.getApp();
 
@@ -63,27 +41,4 @@ public class FireTextBox
 		FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/DataSource/"+id).setValue(value);
 	}
 
-
-
-	@Override
-	public String getId() {
-		// TODO Auto-generated method stub
-		return id;
-	}
-
-
-
-	@Override
-	public void setId(String value) {
-		// TODO Auto-generated method stub
-		this.id=value;
-	}
-
-
-
-	@Override
-	public void setParent(IFireControlsCollection parent) {
-		// TODO Auto-generated method stub
-		this.parent=parent;
-	}
 }

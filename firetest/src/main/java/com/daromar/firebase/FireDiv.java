@@ -6,13 +6,14 @@ import java.util.List;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class FireDiv 
-implements IFireControlsCollection
+implements IFireControlsCollection,IFireEvent
 {
-	private String id="";
-	private IFireControlsCollection parent;
-	private List<IFireControl> controls=new ArrayList<IFireControl>();
-	private String display="block";
-	private FireApp app=null;
+	protected String id="";
+	protected IFireControlsCollection parent;
+	protected List<IFireControl> controls=new ArrayList<IFireControl>();
+	protected String display="block";
+	protected FireApp app=null;
+	protected IFireEvent eventHandler;
 	
 	@Override
 	public String getValue() {
@@ -107,6 +108,18 @@ implements IFireControlsCollection
 	public FireApp getApp() {
 		// TODO Auto-generated method stub
 		return parent.getApp();
+	}
+
+	@Override
+	public void AddEventHandler(IFireEvent eventHandler) {
+		// TODO Auto-generated method stub
+		this.eventHandler=eventHandler;
+	}
+
+	@Override
+	public void FireEvent(FireEventArg arg) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

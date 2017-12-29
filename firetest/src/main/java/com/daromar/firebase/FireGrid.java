@@ -8,13 +8,15 @@ import java.sql.Statement;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class FireGrid
-implements IFireControl{
+extends FireControl{
 	
-	private String id;
+	public FireGrid(String id) {
+		super(id);
+		// TODO Auto-generated constructor stub
+	}
+
 	private int rows=5;
 	private ResultSet resultSet=null;
-	private IFireControlsCollection parent=null;
-	private FireApp app=null;
 	private List<FireGridColumn> columns=new ArrayList<FireGridColumn>();
 
 	
@@ -26,10 +28,6 @@ implements IFireControl{
 		this.resultSet = resultSet;
 	}
 	
-	public FireGrid(String id) {
-		this.id=id;
-	}
-	
 	public int getRows() {
 		return rows;
 	}
@@ -37,24 +35,6 @@ implements IFireControl{
 		this.rows = rows;
 	}
 	
-	@Override
-	public String getValue() {
-		// TODO Auto-generated method stub
-		return "";
-	}
-
-	@Override
-	public String getId() {
-		// TODO Auto-generated method stub
-		return id;
-	}
-
-	@Override
-	public void setId(String id) {
-		// TODO Auto-generated method stub
-		this.id=id;
-	}
-
 	@Override
 	public void InitializeComponent() {
 		// TODO Auto-generated method stub
@@ -70,18 +50,6 @@ implements IFireControl{
 		}
 	}
 
-	@Override
-	public void setValue(String value) {	
-		FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/DataSource/"+id).setValue(value);
-	}
-
-	@Override
-	public void setParent(IFireControlsCollection parent) {
-		// TODO Auto-generated method stub
-		this.parent=parent;
-		
-	}
-	
 	public void AddColumn(FireGridColumn column) {
 		columns.add(column);
 		column.setParent(this);

@@ -7,47 +7,26 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class FireButton 
-implements IFireControl {
-	
-	private String id="";
-	
-	private IButtonClick click=null;
-	private IFireControlsCollection parent=null;
-	private String value="0";
-	private FireApp app=null;
-	
+extends FireControl {
 	
 	private String caption="";
 	
+	
 	public FireButton(String id) {
-		this.id=id;
-					
-		
+		super(id);
+		// TODO Auto-generated constructor stub
 	}
+
+
+	
+	
 	
 	public void RaiseEventClick() {
-     	click.Click();
-     	this.setValue("0");
+		if (this.eventHandler!=null) {
+			FireEventArg arg=new FireEventArg(this,"Click");
+			this.eventHandler.FireEvent(arg);
+		}
 	}
-	
-	public void AddClickListener(IButtonClick click) {
-		this.click=click;
-	}
-
-	@Override
-	public String getId() {
-		// TODO Auto-generated method stub
-		return id;
-	}
-
-	@Override
-	public void setId(String value) {
-		this.value=value;
-		
-		
-	}
-
-	
 
 	public String getCaption() {
 		return caption;
@@ -78,7 +57,7 @@ implements IFireControl {
 	            public void onDataChange(DataSnapshot dataSnapshot) {
 	                String res = (String) dataSnapshot.getValue();
 	               
-	                if (res.compareTo("1")==0 && click!=null){
+	                if (res.compareTo("1")==0 && eventHandler!=null){
 	                	app.Read(but);
 	                }
 	            }
@@ -91,28 +70,4 @@ implements IFireControl {
 	        });
 	}
 
-	@Override
-	public String getValue() {
-		// TODO Auto-generated method stub
-		return value;
-	}
-
-	@Override
-	public void setValue(String value) {
-		// TODO Auto-generated method stub
-		this.value=value;
-		
-		if (!app.isReading()) {
-			 FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/DataSource/"+id).setValue(value);
-		}
-		
-	}
-
-	@Override
-	public void setParent(IFireControlsCollection parent) {
-		// TODO Auto-generated method stub
-		this.parent=parent;
-	}
-
-	
 }

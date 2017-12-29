@@ -14,13 +14,13 @@ extends FireDiv {
 	private FireTextBox txtUsuario;
 	private FireTextBox txtContrasena;
 	private FireLabel lblError;
-	private IFireEvent autenticar=null;
 	
 	public PADivAutenticar(String id) {
 		super(id);
 		
 		btnAceptar=new FireButton("btnAceptar");
 		btnAceptar.setCaption("Aceptar");
+		btnAceptar.AddEventHandler(this);
 		this.AddControl(btnAceptar);
 		
 		txtUsuario=new FireTextBox("txtUsuario");
@@ -35,31 +35,32 @@ extends FireDiv {
 		lblError=new FireLabel("lblError");
 		this.AddControl(lblError);
 		
-		PADivAutenticar div=this;
-		
-		btnAceptar.AddClickListener(new IButtonClick() {
-			@Override
-			public void Click() {
-				String user=txtUsuario.getValue();
-				String pass=txtContrasena.getValue();
-				
-				if (user.compareTo("manager")==0 && pass.compareTo("secure")==0) {
-					lblError.setValue("Ok");
-					if (autenticar!=null) {
-						FireEventArg arg=new FireEventArg(div,"AUTENTICAR");				
-						autenticar.FireEvent(arg);
-					}
-					
-				}else {
-					lblError.setValue("Usuario o contraseña incorrectarrrr");
-				}
-			}
-			
-		});
 	}
 	
-	public void AddFireEventAutenticar(IFireEvent autenticar) {
-		this.autenticar=autenticar;
+	
+	@Override
+	public void FireEvent(FireEventArg arg) {
+		if (arg.getFireControl().getId().equals(btnAceptar.getId())){
+			if (arg.getEvent().equals("Click")) {
+				Autenticar();
+			}
+		}
+	}
+	
+	private void Autenticar() {
+		String user=txtUsuario.getValue();
+		String pass=txtContrasena.getValue();
+		
+		if (user.compareTo("manager")==0 && pass.compareTo("secure")==0) {
+			lblError.setValue("Ok");
+			if (eventHandler!=null) {
+				FireEventArg arg=new FireEventArg(this,"AUTENTICAR");				
+				eventHandler.FireEvent(arg);
+			}
+			
+		}else {
+			lblError.setValue("Usuario o contraseña incorrectar");
+		}
 	}
 
 }

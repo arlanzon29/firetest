@@ -30,7 +30,38 @@
       <p>{{misdatos.DataSource.lblError}}<p>
     </div>
     <div id="divMenu" style="display :{{misdatos.Design.divMenu.Display}}">
-      Menu{{misdatos.Design.divMenu.Display}}
+      Menu
+      <paper-button on-tap="grid" raised>{{misdatos.Design.divMenu.btnGrid.Caption}}</paper-button>
+      
+    </div>
+    <div id="divGrid" style="display:{{misdatos.Design.divGrid.Display}}">
+    	Grid
+    	<table>
+    		<tr>
+    			<td>{{misdatos.Design.divGrid.grdFamilias.Columns.colCodigo.Caption}}</td>
+    			<td>{{misdatos.Design.divGrid.grdFamilias.Columns.colDescripcion.Caption}}</td>
+    		</tr>
+    		<tr>
+    			<td>{{misdatos.Design.divGrid.grdFamilias.Columns.colCodigo.Cell0}}</td>
+    			<td>{{misdatos.Design.divGrid.grdFamilias.Columns.colDescripcion.Cell0}}</td>
+    		</tr>
+    		<tr>
+    			<td>{{misdatos.Design.divGrid.grdFamilias.Columns.colCodigo.Cell1}}</td>
+    			<td>{{misdatos.Design.divGrid.grdFamilias.Columns.colDescripcion.Cell1}}</td>
+    		</tr>
+    		<tr>
+    			<td>{{misdatos.Design.divGrid.grdFamilias.Columns.colCodigo.Cell2}}</td>
+    			<td>{{misdatos.Design.divGrid.grdFamilias.Columns.colDescripcion.Cell2}}</td>
+    		</tr>
+    		<tr>
+    			<td>{{misdatos.Design.divGrid.grdFamilias.Columns.colCodigo.Cell3}}</td>
+    			<td>{{misdatos.Design.divGrid.grdFamilias.Columns.colDescripcion.Cell3}}</td>
+    		</tr>
+    		<tr>
+    			<td>{{misdatos.Design.divGrid.grdFamilias.Columns.colCodigo.Cell4}}</td>
+    			<td>{{misdatos.Design.divGrid.grdFamilias.Columns.colDescripcion.Cell4}}</td>
+    		</tr>
+    	</table>
     </div>
   </template>
 
@@ -53,6 +84,11 @@
       autenticar(){
         this.set('misdatos.DataSource.btnAceptar',"1");
       }
+      
+      grid(){
+          this.set('misdatos.DataSource.btnGrid',"1");
+        }
+        
     }
 
     window.customElements.define(TestApp.is, TestApp);

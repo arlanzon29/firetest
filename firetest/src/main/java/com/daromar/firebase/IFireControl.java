@@ -14,4 +14,5 @@ public interface IFireControl {
 	public void setParent(IFireControlsCollection parent);
 
 
+	public void AddEventHandler(IFireEvent eventHandler);
 }
