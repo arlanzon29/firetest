@@ -35,7 +35,8 @@
       
     </div>
     <div id="divGrid" style="display:{{misdatos.Design.divGrid.Display}}">
-    	Grid
+    	Grid    <paper-button on-tap="consultarFamilias" raised>{{misdatos.Design.divGrid.btnConsultarFamilias.Caption}}</paper-button>
+  
     	<table>
     		<tr>
     			<td>{{misdatos.Design.divGrid.grdFamilias.Columns.colCodigo.Caption}}</td>
@@ -88,7 +89,10 @@
       grid(){
           this.set('misdatos.DataSource.btnGrid',"1");
         }
-        
+      consultarFamilias(){
+          this.set('misdatos.DataSource.btnConsultarFamilias',"1");
+        }
+          
     }
 
     window.customElements.define(TestApp.is, TestApp);

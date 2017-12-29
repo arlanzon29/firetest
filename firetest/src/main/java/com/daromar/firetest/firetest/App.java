@@ -49,9 +49,9 @@ public class App
 			System.out.println("Error " +e.getMessage());
 		}
        
-       PrimeraApplicacion app=new PrimeraApplicacion("app3","c:/borrar/app3.db");
-    //  PrimeraApplicacion app2=new PrimeraApplicacion("app2");
+       PrimeraApplicacion app=new PrimeraApplicacion("app3","C:/Users/Pikachu/git/firetest/firetest/database/firebase.db3");
        
+      // PrimeraApplicacion app=new PrimeraApplicacion("app3","C:/borrar/firebase.db3");
      
       
        

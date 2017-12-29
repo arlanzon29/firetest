@@ -5,15 +5,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.daromar.firebase.FireButton;
 import com.daromar.firebase.FireDiv;
+import com.daromar.firebase.FireEventArg;
 import com.daromar.firebase.FireGrid;
 import com.daromar.firebase.FireGridColumn;
 
 public class PADivGrid
 extends FireDiv{
 
-	private FireGrid grdFamilias;
+	
 	private Connection conn;
+	
+	private FireButton btnConsultarFamilias;
+	
+	private FireGrid grdFamilias;
 	private FireGridColumn colCodigo;
 	private FireGridColumn colDescripcion;
 	
@@ -22,6 +28,11 @@ extends FireDiv{
 		// TODO Auto-generated constructor stub
 		
 		this.conn=conn;
+		
+		btnConsultarFamilias=new FireButton("btnConsultarFamilias");
+		btnConsultarFamilias.setCaption("Consultar");
+		btnConsultarFamilias.AddEventHandler(this);
+		this.AddControl(btnConsultarFamilias);
 		
 		grdFamilias=new FireGrid("grdFamilias");
 		grdFamilias.setRows(5);
@@ -36,6 +47,30 @@ extends FireDiv{
 		//grdFamilias.setResultSet(ExecuteQuery());
 
 		this.AddControl(grdFamilias);
+	}
+	
+	
+	@Override
+	public void FireEvent(FireEventArg arg)  {
+		if (arg.getFireControl().getId().equals(btnConsultarFamilias.getId()) && arg.getEvent().equals("Click")) {
+			try {
+				ResultSet rs=ExecuteQuery();
+				int linea=0;
+				
+				 while(rs.next() && linea<5)
+				 {
+					 colCodigo.setValue(linea,rs.getString("CODE"));
+					 colDescripcion.setValue(linea,rs.getString("NAME"));
+					 linea+=1;
+				 }
+				
+			}catch(Exception ex)
+			{
+				
+			}
+			
+			//grdFamilias.setResultSet(ExecuteQuery());
+		}
 	}
 
 	private ResultSet ExecuteQuery() {
