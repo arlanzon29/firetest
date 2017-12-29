@@ -39,15 +39,18 @@ extends FireDiv{
 		btnConsultarFamilias.AddEventHandler(this);
 		this.AddControl(btnConsultarFamilias);
 		
-		grdFamilias=new FireGrid("grdFamilias");
+		grdFamilias=new FireGrid("grdFamilias",conn);
+		grdFamilias.setTableName("GISAC_OFAM");
 		grdFamilias.setRows(5);
 		
 		colCodigo=new FireGridColumn("colCodigo");
 		colCodigo.setCaption("Código");
+		colCodigo.setColumnName("CODE");
 		grdFamilias.AddColumn(colCodigo);
 		
 		colDescripcion=new FireGridColumn("colDescripcion");
 		colDescripcion.setCaption("Descripción");
+		colDescripcion.setColumnName("NAME");
 		grdFamilias.AddColumn(colDescripcion);
 		this.AddControl(grdFamilias);
 		
@@ -70,9 +73,8 @@ extends FireDiv{
 	@Override
 	public void FireEvent(FireEventArg arg)  {
 		if (arg.getFireControl().getId().equals(btnConsultarFamilias.getId()) && arg.getEvent().equals("Click")) {
-			grdFamilias.setPage(1);
-			txtPosicion.setValue(""+grdFamilias.getPage());
-			Consultar();
+			txtPosicion.setValue("1");
+			grdFamilias.ExecuteNewQuery();
 		}else if (arg.getFireControl().getId().equals(btnAtras.getId()) && arg.getEvent().equals("Click")){
 			Atras();
 		}else if (arg.getFireControl().getId().equals(btnAdelante.getId()) && arg.getEvent().equals("Click")){
@@ -85,59 +87,13 @@ extends FireDiv{
 	private void Atras() {
 		if (grdFamilias.getPage()>0) {
 			grdFamilias.setPage(grdFamilias.getPage()-1);
-			Consultar();
 			txtPosicion.setValue(""+grdFamilias.getPage());
 		}
 	}
 
 	private void Adelante() {
 		grdFamilias.setPage(grdFamilias.getPage()+1);
-		Consultar();
 		txtPosicion.setValue(""+grdFamilias.getPage());
 	}
 	
-	private void Consultar() {
-		try {
-			ResultSet rs=ExecuteQuery();
-			int linea=0;
-			
-			 while(rs.next() && linea<5)
-			 {
-				 colCodigo.setValue(linea,rs.getString("CODE"));
-				 colDescripcion.setValue(linea,rs.getString("NAME"));
-				 linea+=1;
-			 }
-			 
-			 for (int i=linea;i<5;i++) {
-				 colCodigo.setValue(i,"");
-				 colDescripcion.setValue(i,"");
-				 
-			 }
-			
-		}catch(Exception ex)
-		{
-			
-		}
-	
-	}
-	private ResultSet ExecuteQuery() {
-		Statement statement;
-		try {
-			statement = conn.createStatement();
-			statement.setQueryTimeout(30);  // set timeout to 30 sec.
-			
-			String sql="";
-			
-			sql=" SELECT CODE,NAME";
-			sql+=" FROM GISAC_OFAM ";
-			sql+=" ORDER BY CODE";
-			sql+=" LIMIT 5 OFFSET " +((grdFamilias.getPage()-1)*5);
-			ResultSet rs = statement.executeQuery(sql);
-			return rs;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-	}
 }

@@ -8,7 +8,16 @@ public class FireGridColumn {
 	private String caption;
 	private String [] values;
 	private String path;
+	private String columnName="";
 	
+	public String getColumnName() {
+		return columnName;
+	}
+
+	public void setColumnName(String columnName) {
+		this.columnName = columnName;
+	}
+
 	public String getCaption() {
 		return caption;
 	}
