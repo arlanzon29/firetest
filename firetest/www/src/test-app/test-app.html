@@ -63,6 +63,10 @@
     			<td>{{misdatos.Design.divGrid.grdFamilias.Columns.colDescripcion.Cell4}}</td>
     		</tr>
     	</table>
+    	
+    	<paper-button on-tap="atras" raised>{{misdatos.Design.divGrid.btnAtras.Caption}}</paper-button>
+    	<paper-input label="{{misdatos.Design.divGrid.txtPosicion.Label}}" value="{{misdatos.DataSource.txtPosicion}}"></paper-input>
+    	<paper-button on-tap="adelante" raised>{{misdatos.Design.divGrid.btnAdelante.Caption}}</paper-button>
     </div>
   </template>
 
@@ -91,6 +95,15 @@
         }
       consultarFamilias(){
           this.set('misdatos.DataSource.btnConsultarFamilias',"1");
+        }
+      
+      atras(){
+          this.set('misdatos.DataSource.btnAtras',"1");
+        }
+          
+      
+      adelante(){
+          this.set('misdatos.DataSource.btnAdelante',"1");
         }
           
     }

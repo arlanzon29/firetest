@@ -10,6 +10,7 @@ import com.daromar.firebase.FireDiv;
 import com.daromar.firebase.FireEventArg;
 import com.daromar.firebase.FireGrid;
 import com.daromar.firebase.FireGridColumn;
+import com.daromar.firebase.FireTextBox;
 
 public class PADivGrid
 extends FireDiv{
@@ -18,7 +19,11 @@ extends FireDiv{
 	private Connection conn;
 	
 	private FireButton btnConsultarFamilias;
-	
+
+	private FireButton btnAtras;
+	private FireButton btnAdelante;
+	private FireTextBox txtPosicion;
+
 	private FireGrid grdFamilias;
 	private FireGridColumn colCodigo;
 	private FireGridColumn colDescripcion;
@@ -44,35 +49,77 @@ extends FireDiv{
 		colDescripcion=new FireGridColumn("colDescripcion");
 		colDescripcion.setCaption("Descripción");
 		grdFamilias.AddColumn(colDescripcion);
-		//grdFamilias.setResultSet(ExecuteQuery());
-
 		this.AddControl(grdFamilias);
+		
+		
+		btnAtras=new FireButton("btnAtras");
+		btnAtras.setCaption("<");
+		btnAtras.AddEventHandler(this);
+		this.AddControl(btnAtras);
+		
+		btnAdelante=new FireButton("btnAdelante");
+		btnAdelante.setCaption(">");
+		btnAdelante.AddEventHandler(this);
+		this.AddControl(btnAdelante);
+		
+		txtPosicion=new FireTextBox("txtPosicion");
+		this.AddControl(txtPosicion);
 	}
 	
 	
 	@Override
 	public void FireEvent(FireEventArg arg)  {
 		if (arg.getFireControl().getId().equals(btnConsultarFamilias.getId()) && arg.getEvent().equals("Click")) {
-			try {
-				ResultSet rs=ExecuteQuery();
-				int linea=0;
-				
-				 while(rs.next() && linea<5)
-				 {
-					 colCodigo.setValue(linea,rs.getString("CODE"));
-					 colDescripcion.setValue(linea,rs.getString("NAME"));
-					 linea+=1;
-				 }
-				
-			}catch(Exception ex)
-			{
-				
-			}
-			
-			//grdFamilias.setResultSet(ExecuteQuery());
+			grdFamilias.setPage(1);
+			txtPosicion.setValue(""+grdFamilias.getPage());
+			Consultar();
+		}else if (arg.getFireControl().getId().equals(btnAtras.getId()) && arg.getEvent().equals("Click")){
+			Atras();
+		}else if (arg.getFireControl().getId().equals(btnAdelante.getId()) && arg.getEvent().equals("Click")){
+			Adelante();
+		}
+		
+		
+	}
+	
+	private void Atras() {
+		if (grdFamilias.getPage()>0) {
+			grdFamilias.setPage(grdFamilias.getPage()-1);
+			Consultar();
+			txtPosicion.setValue(""+grdFamilias.getPage());
 		}
 	}
 
+	private void Adelante() {
+		grdFamilias.setPage(grdFamilias.getPage()+1);
+		Consultar();
+		txtPosicion.setValue(""+grdFamilias.getPage());
+	}
+	
+	private void Consultar() {
+		try {
+			ResultSet rs=ExecuteQuery();
+			int linea=0;
+			
+			 while(rs.next() && linea<5)
+			 {
+				 colCodigo.setValue(linea,rs.getString("CODE"));
+				 colDescripcion.setValue(linea,rs.getString("NAME"));
+				 linea+=1;
+			 }
+			 
+			 for (int i=linea;i<5;i++) {
+				 colCodigo.setValue(i,"");
+				 colDescripcion.setValue(i,"");
+				 
+			 }
+			
+		}catch(Exception ex)
+		{
+			
+		}
+	
+	}
 	private ResultSet ExecuteQuery() {
 		Statement statement;
 		try {
@@ -83,7 +130,8 @@ extends FireDiv{
 			
 			sql=" SELECT CODE,NAME";
 			sql+=" FROM GISAC_OFAM ";
-			
+			sql+=" ORDER BY CODE";
+			sql+=" LIMIT 5 OFFSET " +((grdFamilias.getPage()-1)*5);
 			ResultSet rs = statement.executeQuery(sql);
 			return rs;
 		} catch (SQLException e) {

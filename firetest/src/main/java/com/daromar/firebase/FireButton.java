@@ -25,6 +25,7 @@ extends FireControl {
 		if (this.eventHandler!=null) {
 			FireEventArg arg=new FireEventArg(this,"Click");
 			this.eventHandler.FireEvent(arg);
+			this.setValue("0");
 		}
 	}
 

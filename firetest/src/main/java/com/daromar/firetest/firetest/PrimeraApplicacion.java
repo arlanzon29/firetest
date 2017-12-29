@@ -44,7 +44,7 @@ implements IFireEvent {
 	@Override
 	public void FireEvent(FireEventArg arg) {
 		// TODO Auto-generated method stub
-		if (arg.getFireControl().getId().equals(divAutenticar.getId()) && arg.getEvent().equals(("Autenticar"))){
+		if (arg.getFireControl().getId().equals(divAutenticar.getId()) && arg.getEvent().equals(("AUTENTICAR"))){
 			divAutenticar.setDisplay("none");
 			divMenu.setDisplay("block");
 		}
