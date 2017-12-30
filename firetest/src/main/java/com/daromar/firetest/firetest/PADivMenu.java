@@ -32,7 +32,7 @@ extends FireDiv{
 
 	private void Familias() {
 		if (eventHandler!=null) {
-			FireEventArg arg=new FireEventArg(this,"FAMILIAS");				
+			FireEventArg arg=new FireEventArg(this,"FAMILIAS","");				
 			eventHandler.FireEvent(arg);
 		}
 	}

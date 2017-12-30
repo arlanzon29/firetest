@@ -54,7 +54,7 @@ extends FireDiv {
 		if (user.compareTo("manager")==0 && pass.compareTo("secure")==0) {
 			lblError.setValue("Ok");
 			if (eventHandler!=null) {
-				FireEventArg arg=new FireEventArg(this,"AUTENTICAR");				
+				FireEventArg arg=new FireEventArg(this,"AUTENTICAR","");				
 				eventHandler.FireEvent(arg);
 			}
 			

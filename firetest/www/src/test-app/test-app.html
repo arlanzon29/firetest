@@ -23,8 +23,8 @@
     </firebase-document>
     <div id="divAutenticar" style="display :{{misdatos.Design.divAutenticar.Display}}">
        <h2>Introduzca Usuario y contraseña</h2>
-      <paper-input label="{{misdatos.Design.divAutenticar.txtUsuario.Label}}" value="{{misdatos.DataSource.txtUsuario}}"></paper-input>
-      <paper-input label="{{misdatos.Design.divAutenticar.txtContrasena.Label}}" value="{{misdatos.DataSource.txtContrasena}}"></paper-input>
+      <paper-input label="{{misdatos.Design.divAutenticar.txtUsuario.Label}}" value="{{misdatos.DataSource.divAutenticar.txtUsuario}}"></paper-input>
+      <paper-input label="{{misdatos.Design.divAutenticar.txtContrasena.Label}}" value="{{misdatos.DataSource.divAutenticar.txtContrasena}}"></paper-input>
       <paper-button on-tap="autenticar">{{misdatos.Design.divAutenticar.btnAceptar.Caption}}</paper-button>
 
       <p>{{misdatos.DataSource.lblError}}<p>
@@ -65,7 +65,7 @@
     	</table>
     	
     	<paper-button on-tap="atras" raised>{{misdatos.Design.divGrid.btnAtras.Caption}}</paper-button>
-    	<paper-input label="{{misdatos.Design.divGrid.txtPosicion.Label}}" value="{{misdatos.DataSource.txtPosicion}}"></paper-input>
+    	<paper-input label="{{misdatos.Design.divGrid.txtPosicion.Label}}" value="{{misdatos.DataSource.divGrid.txtPosicion}}"></paper-input>
     	<paper-button on-tap="adelante" raised>{{misdatos.Design.divGrid.btnAdelante.Caption}}</paper-button>
     </div>
   </template>
@@ -86,24 +86,32 @@
         };
       }
 
+      fireEvent(dir,firecontrol,event,argument){
+    	  var event={
+    			  FireControl:firecontrol,
+    			  Event:event,
+    			  Argument:argument
+    	  }
+    	  this.set(dir,event)
+      }
       autenticar(){
-        this.set('misdatos.DataSource.btnAceptar',"1");
+        this.fireEvent('misdatos.Event.divAutenticar',"btnAceptar","Click","")
       }
       
       grid(){
-          this.set('misdatos.DataSource.btnGrid',"1");
+    	  this.fireEvent('misdatos.Event.divMenu',"btnGrid","Click","")
         }
       consultarFamilias(){
-          this.set('misdatos.DataSource.btnConsultarFamilias',"1");
+    	  this.fireEvent('misdatos.Event.divGrid',"btnConsultarFamilias","Click","")
         }
       
       atras(){
-          this.set('misdatos.DataSource.btnAtras',"1");
+    	  this.fireEvent('misdatos.Event.divGrid',"btnAtras","Click","")
         }
           
       
       adelante(){
-          this.set('misdatos.DataSource.btnAdelante',"1");
+    	  this.fireEvent('misdatos.Event.divGrid',"btnAdelante","Click","")
         }
           
     }

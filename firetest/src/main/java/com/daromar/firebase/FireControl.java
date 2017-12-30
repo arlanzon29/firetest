@@ -10,6 +10,7 @@ public class FireControl implements IFireControl {
 	protected IFireControlsCollection parent=null;
 	protected String value="";
 	protected FireApp app=null;
+	protected String path="";
 	
 
 	public FireControl(String id) {
@@ -45,7 +46,7 @@ public class FireControl implements IFireControl {
 		this.value=value;
 		
 		if (!app.isReading()) {
-			FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/DataSource/"+id).setValue(value);
+			FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/DataSource/"+path).setValue(value);
 			
 		}
 	}
@@ -61,4 +62,10 @@ public class FireControl implements IFireControl {
 		this.eventHandler=eventHandler;
 	}
 
+	public void RaiseFireEvent(FireWebEvent event) {
+		if (this.eventHandler!=null) {
+			FireEventArg arg=new FireEventArg(this,event.Event,event.Argument);
+			this.eventHandler.FireEvent(arg);
+		}
+	}
 }

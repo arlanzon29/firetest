@@ -35,10 +35,10 @@ public class FireTextBox
 	public void InitializeComponent() {
 		app=this.parent.getApp();
 
-		String path=this.parent.getPath()+"/"+id;
+		path=this.parent.getPath()+"/"+id;
 		
 		FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/Design/"+path+"/Label").setValue(label);
-		FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/DataSource/"+id).setValue(value);
+		FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/DataSource/"+path).setValue(value);
 	}
 
 }

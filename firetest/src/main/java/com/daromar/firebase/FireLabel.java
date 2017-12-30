@@ -29,7 +29,7 @@ extends FireControl {
 		this.value=value;
 		
 		if (!app.isReading()) {
-			 FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/DataSource/"+id).setValue(value);
+			 FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/DataSource/"+path).setValue(value);
 			
 		}
 	}
@@ -41,8 +41,9 @@ extends FireControl {
 	public void InitializeComponent() {
 		app=this.parent.getApp();
 
+		path=this.parent.getPath()+"/"+id;
 		
-		FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/DataSource/"+id).setValue(value);
+		FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/DataSource/"+path).setValue(value);
 	}
 
 

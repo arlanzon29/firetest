@@ -20,14 +20,14 @@ extends FireControl {
 
 	
 	
-	
+	/*
 	public void RaiseEventClick() {
 		if (this.eventHandler!=null) {
 			FireEventArg arg=new FireEventArg(this,"Click");
 			this.eventHandler.FireEvent(arg);
 			this.setValue("0");
 		}
-	}
+	}*/
 
 	public String getCaption() {
 		return caption;
@@ -42,16 +42,16 @@ extends FireControl {
 	public void InitializeComponent() {
 		app=this.parent.getApp();
 
-		String path=this.parent.getPath()+"/"+id;
+		path=this.parent.getPath()+"/"+id;
 		
 		FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/Design/"+path+"/Caption").setValue(caption);
-		FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/DataSource/"+id).setValue(value);
+		FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/DataSource/"+path).setValue(value);
 		
-		
+		/*
 		
 		FireButton but=this;
 		 FirebaseDatabase database = FirebaseDatabase.getInstance();
-	     DatabaseReference ref = database.getReference(app.getBasePath()+"/DataSource/"+id);
+	     DatabaseReference ref = database.getReference(app.getBasePath()+"/DataSource/"+path);
 		    
 	        ref.addValueEventListener(new ValueEventListener() {
 	            @Override
@@ -68,7 +68,7 @@ extends FireControl {
 					// TODO Auto-generated method stub
 					
 				}
-	        });
+	        });*/
 	}
 
 }

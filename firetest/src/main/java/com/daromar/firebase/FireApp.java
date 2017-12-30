@@ -45,6 +45,7 @@ implements IFireControlsCollection{
 		control.setParent(this);
 	}
 
+	/*
 	public void Read(FireButton btn) {
 		DatabaseReference ref= FirebaseDatabase.getInstance().getReference(basePath+"/DataSource");
 
@@ -87,7 +88,7 @@ implements IFireControlsCollection{
 			}
 		}
 	}
-	
+	*/
 	protected void InitializeApp() {
 		/*esto se debe modifcar*/
 		FirebaseDatabase.getInstance().getReference(basePath).removeValue();
