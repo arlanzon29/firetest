@@ -17,6 +17,16 @@ implements IFireControlsCollection,IFireEvent,ValueEventListener
 	protected IFireControlsCollection parent;
 	protected List<IFireControl> controls=new ArrayList<IFireControl>();
 	protected String display="block";
+	protected String defaultDisplay="block";
+	
+	public String getDefaultDisplay() {
+		return defaultDisplay;
+	}
+
+	public void setDefaultDisplay(String defaultDisplay) {
+		this.defaultDisplay = defaultDisplay;
+	}
+
 	protected FireApp app=null;
 	protected IFireEvent eventHandler;
 	private FireWebEvent event=null;
@@ -56,6 +66,8 @@ implements IFireControlsCollection,IFireEvent,ValueEventListener
 
 		path=this.parent.getPath()+"/"+id;
 		
+		this.display=this.defaultDisplay;
+		
 		FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/Design/"+path+"/Display").setValue(display);
 
 		
@@ -70,9 +82,26 @@ implements IFireControlsCollection,IFireEvent,ValueEventListener
 		FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/Event/"+path+"/Event").setValue("");
 		FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/Event/"+path+"/Argument").setValue("");
 		
-		 FirebaseDatabase database = FirebaseDatabase.getInstance();
+		FirebaseDatabase database = FirebaseDatabase.getInstance();
 	     DatabaseReference ref = database.getReference(app.getBasePath()+"/Event"+path);
 	     ref.addValueEventListener(this);
+	}
+
+	@Override
+	public void ResetComponent() {
+		// TODO Auto-generated method stub
+		this.display=this.defaultDisplay;
+		FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/Design/"+path+"/Display").setValue(display);
+
+		for(IFireControl ctr : controls)
+		{
+			ctr.ResetComponent();
+		}
+
+		/* Creo la zona de eventos */
+		FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/Event/"+path+"/FireControl").setValue("");
+		FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/Event/"+path+"/Event").setValue("");
+		FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/Event/"+path+"/Argument").setValue("");
 	}
 
 	@Override
@@ -197,6 +226,7 @@ implements IFireControlsCollection,IFireEvent,ValueEventListener
 		// TODO Auto-generated method stub
 		
 	}
+
 
 
 }

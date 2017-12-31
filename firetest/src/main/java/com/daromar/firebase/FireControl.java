@@ -30,8 +30,12 @@ public class FireControl implements IFireControl {
 
 	@Override
 	public void InitializeComponent() {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub		
+	}
+
+
+	public void ResetComponent() {
+		// TODO Auto-generated method stub		
 	}
 
 	@Override

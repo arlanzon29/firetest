@@ -22,24 +22,31 @@
     <firebase-document
         app-name="testAplicacion"
         path="/app3"
-        data="{{misdatos}}">
+        data="{{misdatos}}"
+        on-data-changed="CheckStatus">
     </firebase-document>
+    
+    <div	style="display:{{displayLoading}}" >
+    LOADING</div>
 
-	<test-autenticar 	design="{{misdatos.Design.divAutenticar}}" 
-						datasource="{{misdatos.DataSource.divAutenticar}}" 
-						event="{{misdatos.Event.divAutenticar}}">
-						
-	</test-autenticar>
-	<test-menu	design="{{misdatos.Design.divMenu}}" 
-						datasource="{{misdatos.DataSource.divMenu}}" 
-						event="{{misdatos.Event.divMenu}}">
-						
-	</test-menu>
+	<div style="display:{{displayApp}}">
+		<test-autenticar 	design="{{misdatos.Design.divAutenticar}}" 
+							datasource="{{misdatos.DataSource.divAutenticar}}" 
+							event="{{misdatos.Event.divAutenticar}}">
+							
+		</test-autenticar>
+		<test-menu	design="{{misdatos.Design.divMenu}}" 
+							datasource="{{misdatos.DataSource.divMenu}}" 
+							event="{{misdatos.Event.divMenu}}">
+							
+		</test-menu>
+		
+		<test-grid	design="{{misdatos.Design.divGrid}}" 
+							datasource="{{misdatos.DataSource.divGrid}}" 
+							event="{{misdatos.Event.divGrid}}">
+		</test-grid>
+		</div>
 	
-	<test-grid	design="{{misdatos.Design.divGrid}}" 
-						datasource="{{misdatos.DataSource.divGrid}}" 
-						event="{{misdatos.Event.divGrid}}">
-	</test-grid>
   </template>
 
   <script>
@@ -54,8 +61,44 @@
           prop1: {
             type: String,
             value: 'test-app'
+          },
+          online:{
+        	  type:Boolean,
+        	  value:false
+          },
+          misdatos:Object,
+          displayLoading:{
+        	  value:"block"
+          },
+          displayApp:{
+        	value:"none"  
           }
         };
+      }
+      
+      
+      ready(){
+    	  super.ready();
+      }
+      
+      CheckStatus(){
+    	  if (!this.online){
+    		  if (this.misdatos!=null){
+    			  if (this.misdatos.Status!=null){
+    				  if (this.misdatos.Status=="on"){
+    					  var app=this;
+    					  setTimeout(function(){
+	        			  app.online=true;
+	        			  app.set("misdatos.Event.App.Event","Reset");
+	        			  app.displayLoading="none";
+	        			  app.displayApp="block";
+    					  }, 1000);
+	    			  	}
+    				  
+    			  }
+    		  }
+    	  }
+    	  
       }
     }
 

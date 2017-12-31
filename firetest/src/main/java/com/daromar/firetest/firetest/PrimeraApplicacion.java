@@ -23,17 +23,19 @@ implements IFireEvent {
 		super(basePath,sqllite);
 		
 		divAutenticar=new PADivAutenticar("divAutenticar");
+		divAutenticar.setDefaultDisplay("block");
 		divAutenticar.AddEventHandler(this);
 		this.AddControl(divAutenticar);
 		
 		divMenu=new PADivMenu("divMenu");
-		divMenu.setDisplay("none");
+		divMenu.setDefaultDisplay("none");
 		divMenu.AddEventHandler(this);
 		this.AddControl(divMenu);
 		
 		
 		divGrid=new PADivGrid("divGrid",this.connection);
-		divGrid.setDisplay("none");
+		divGrid.setDefaultDisplay("none");
+		divGrid.AddEventHandler(this);
 		this.AddControl(divGrid);
 		
 		
@@ -52,6 +54,17 @@ implements IFireEvent {
 			if (arg.getEvent().equals("FAMILIAS")) {
 				divMenu.setDisplay("none");
 				divGrid.setDisplay("block");
+			}else if (arg.getEvent().equals("DESCONECTAR")) {
+				this.ResetApp();
+				divAutenticar.setDisplay("block");
+				divMenu.setDisplay("none");
+
+			}
+		}
+		else if (arg.getFireControl().getId().equals(divGrid.getId())) {
+			if (arg.getEvent().equals("REGRESAR")) {
+				divMenu.setDisplay("block");
+				divGrid.setDisplay("none");
 			}
 		}
 		

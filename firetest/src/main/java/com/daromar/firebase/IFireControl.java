@@ -6,6 +6,7 @@ public interface IFireControl {
 	public void setId(String id);
 	
 	public void InitializeComponent();
+	public void ResetComponent();
 	
 	public String getValue();
 	public void setValue(String value);

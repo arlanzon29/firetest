@@ -37,8 +37,15 @@ public class FireTextBox
 
 		path=this.parent.getPath()+"/"+id;
 		
+		ResetComponent();
+	}
+
+	@Override
+	public void ResetComponent() {
+		this.value="";
 		FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/Design/"+path+"/Label").setValue(label);
 		FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/DataSource/"+path).setValue(value);
 	}
-
+	
+	
 }

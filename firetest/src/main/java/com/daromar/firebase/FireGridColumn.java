@@ -49,7 +49,16 @@ public class FireGridColumn {
 			FirebaseDatabase.getInstance().getReference(path+id+"/Cell"+i).setValue(values[i]);	
 		}
 	}
-	
+
+	public void ResetComponent() {
+		FirebaseDatabase.getInstance().getReference(path+id+"/Caption").setValue(caption);
+		
+		for (int i=0;i<values.length;i++) {
+			values[i]="";
+			FirebaseDatabase.getInstance().getReference(path+id+"/Cell"+i).setValue(values[i]);	
+		}
+	}
+
 	public void setValue(int index,String value) {
 		values[index]=value;
 		FirebaseDatabase.getInstance().getReference(path+id+"/Cell"+index).setValue(values[index]);	

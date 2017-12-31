@@ -13,6 +13,9 @@
     <div id="divMenu" style="display :{{design.Display}}">
       Menu<br>
       <paper-button on-tap="grid" raised>{{design.btnGrid.Caption}}</paper-button>
+      <br>
+      <br>
+      <paper-button on-tap="desconectar" raised>{{design.btnDesconectar.Caption}}</paper-button>
       
     </div>
   </template>
@@ -37,6 +40,12 @@
     	  this.set("event.Event","Click");
     	  this.set("event.FireControl","btnGrid");
         }
+      desconectar(){
+    	  this.set("event.Argument","");
+    	  this.set("event.Event","Click");
+    	  this.set("event.FireControl","btnDesconectar");
+        }
+      
     }
 
     window.customElements.define(MenuApp.is, MenuApp);

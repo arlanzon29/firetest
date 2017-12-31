@@ -74,6 +74,17 @@ extends FireControl{
 		}
 	}
 
+	@Override
+	public void ResetComponent() {
+		// TODO Auto-generated method stub
+		FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/Design/"+path+"/Rows").setValue("5");	
+		
+		for(FireGridColumn col: this.columns)
+		{
+			col.ResetComponent();
+		}
+	}
+
 	public void AddColumn(FireGridColumn column) {
 		columns.add(column);
 		column.setParent(this);

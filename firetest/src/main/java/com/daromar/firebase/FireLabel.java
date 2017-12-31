@@ -43,9 +43,14 @@ extends FireControl {
 
 		path=this.parent.getPath()+"/"+id;
 		
-		FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/DataSource/"+path).setValue(value);
+		ResetComponent();
 	}
 
+	@Override
+	public void ResetComponent() {
+		FirebaseDatabase.getInstance().getReference(app.getBasePath()+"/DataSource/"+path).setValue(value);
+		this.value="";
+	}
 
 
 }

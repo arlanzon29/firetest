@@ -22,6 +22,8 @@ extends FireDiv{
 
 	private FireButton btnAtras;
 	private FireButton btnAdelante;
+	private FireButton btnRegresar;
+
 	private FireTextBox txtPosicion;
 
 	private FireGrid grdFamilias;
@@ -65,6 +67,11 @@ extends FireDiv{
 		btnAdelante.AddEventHandler(this);
 		this.AddControl(btnAdelante);
 		
+		btnRegresar=new FireButton("btnRegresar");
+		btnRegresar.setCaption("Regresar");
+		btnRegresar.AddEventHandler(this);
+		this.AddControl(btnRegresar);
+		
 		txtPosicion=new FireTextBox("txtPosicion");
 		this.AddControl(txtPosicion);
 	}
@@ -79,11 +86,19 @@ extends FireDiv{
 			Atras();
 		}else if (arg.getFireControl().getId().equals(btnAdelante.getId()) && arg.getEvent().equals("Click")){
 			Adelante();
+		}else if (arg.getFireControl().getId().equals(btnRegresar.getId()) && arg.getEvent().equals("Click")){
+			Regresar();
 		}
+		
 		
 		
 	}
 	
+	
+	private void Regresar() {
+		FireEventArg arg=new FireEventArg(this,"REGRESAR","");				
+		eventHandler.FireEvent(arg);
+	}
 	private void Atras() {
 		if (grdFamilias.getPage()>0) {
 			grdFamilias.setPage(grdFamilias.getPage()-1);

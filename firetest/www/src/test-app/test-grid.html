@@ -42,6 +42,9 @@
     	<paper-button on-tap="atras" raised>{{design.btnAtras.Caption}}</paper-button>
     	<paper-input label="{{design.txtPosicion.Label}}" value="{{datasource.txtPosicion}}"></paper-input>
     	<paper-button on-tap="adelante" raised>{{design.btnAdelante.Caption}}</paper-button>
+    	<br>
+    	<paper-button on-tap="regresar" raised>{{design.btnRegresar.Caption}}</paper-button>
+    	
     </div>
   </template>
 
@@ -77,7 +80,13 @@
     	  this.set("event.Event","Click");
     	  this.set("event.FireControl","btnAdelante");
         }
-          
+
+      regresar(){
+    	  this.set("event.Argument","");
+    	  this.set("event.Event","Click");
+    	  this.set("event.FireControl","btnRegresar");
+        }
+
     }
 
     window.customElements.define(GridApp.is, GridApp);

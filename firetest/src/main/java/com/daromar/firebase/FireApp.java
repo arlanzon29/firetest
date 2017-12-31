@@ -12,10 +12,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class FireApp
-implements IFireControlsCollection{
+implements IFireControlsCollection,ValueEventListener{
 	private String basePath="";
 	private List<IFireControl> controls=new ArrayList<IFireControl>();
 	private IFireEvent eventHandler=null;
+	private FireWebEvent event=null;
 	
 	public boolean isReading() {
 		return reading;
@@ -45,58 +46,59 @@ implements IFireControlsCollection{
 		control.setParent(this);
 	}
 
-	/*
-	public void Read(FireButton btn) {
-		DatabaseReference ref= FirebaseDatabase.getInstance().getReference(basePath+"/DataSource");
 
-		FireApp ap=this;
-		
-		  ref.addListenerForSingleValueEvent(new ValueEventListener() {
-	            @Override
-	            public void onDataChange(DataSnapshot dataSnapshot) {
-	              ap.setReading(true);
-	                for (DataSnapshot child : dataSnapshot.getChildren()) { 
-	                	 long numChildren = child.getChildrenCount();
-	                	 if (numChildren==0) {
-	                		 String key=child.getKey();
-	                		 String value=(String)child.getValue();
-	                		 SetControlValue(ap,key,value);
-	                	 }	 
-	                } 	
-	                ap.setReading(false);
-	                btn.RaiseEventClick();
-	            }
-	
-				@Override
-				public void onCancelled(DatabaseError arg0) {
-					 
-					
-				}
-	        });
-	        
-	}
-	
-	private void SetControlValue(IFireControlsCollection controls,String key,String value) {
-		for(IFireControl ctr : controls.getControls())
-		{
-			if (ctr instanceof IFireControlsCollection) {
-				SetControlValue((IFireControlsCollection) ctr,key,value);
-			}else {
-				if (ctr.getId().compareTo(key)==0) {
-					ctr.setValue(value);
-				}
-			}
-		}
-	}
-	*/
 	protected void InitializeApp() {
 		/*esto se debe modifcar*/
 		FirebaseDatabase.getInstance().getReference(basePath).removeValue();
+		FirebaseDatabase.getInstance().getReference(basePath+"/Status").setValue("on");
+		
+		FirebaseDatabase.getInstance().getReference(basePath+"/Event/App/FireControl").setValue("");
+		FirebaseDatabase.getInstance().getReference(basePath+"/Event/App/Event").setValue("");
+		FirebaseDatabase.getInstance().getReference(basePath+"/Event/App/Argument").setValue("");
 		
 		for(IFireControl ctr : controls)
 		{
 			ctr.InitializeComponent();
 		}
+		
+		 FirebaseDatabase database = FirebaseDatabase.getInstance();
+	     DatabaseReference ref = database.getReference(basePath+"/Event/App");
+	     ref.addValueEventListener(this);
+	}
+
+	@Override
+	public void onDataChange(DataSnapshot snapshot) {
+		// TODO Auto-generated method stub
+
+		event=snapshot.getValue(FireWebEvent.class);
+		
+		if (event.Event.equals("Reset")) {
+			this.ResetApp();
+		}
+		
+		event.FireControl="";
+		event.Event="";
+		event.Argument="";
+		
+		FirebaseDatabase.getInstance().getReference(basePath+"/Event/App").setValue(event);
+	}
+
+	@Override
+	public void onCancelled(DatabaseError error) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	protected void ResetApp() {
+		FirebaseDatabase.getInstance().getReference(basePath+"/Event/App/FireControl").setValue("");
+		FirebaseDatabase.getInstance().getReference(basePath+"/Event/App/Event").setValue("");
+		FirebaseDatabase.getInstance().getReference(basePath+"/Event/App/Argument").setValue("");
+		
+		for(IFireControl ctr : controls)
+		{
+			ctr.ResetComponent();
+		}
+	
 	}
 
 	@Override
@@ -116,6 +118,10 @@ implements IFireControlsCollection{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public void ResetComponent() {
+		}
+	
 
 	@Override
 	public String getValue() {
@@ -159,4 +165,6 @@ implements IFireControlsCollection{
 		// TODO Auto-generated method stub
 		this.eventHandler=eventHandler;
 	}
+
+
 }
