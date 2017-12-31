@@ -1,4 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="test-autenticar.html">
+<link rel="import" href="test-menu.html">
+<link rel="import" href="test-grid.html">
 
 
 <dom-module id="test-app">
@@ -21,53 +24,22 @@
         path="/app3"
         data="{{misdatos}}">
     </firebase-document>
-    <div id="divAutenticar" style="display :{{misdatos.Design.divAutenticar.Display}}">
-       <h2>Introduzca Usuario y contraseña</h2>
-      <paper-input label="{{misdatos.Design.divAutenticar.txtUsuario.Label}}" value="{{misdatos.DataSource.divAutenticar.txtUsuario}}"></paper-input>
-      <paper-input label="{{misdatos.Design.divAutenticar.txtContrasena.Label}}" value="{{misdatos.DataSource.divAutenticar.txtContrasena}}"></paper-input>
-      <paper-button on-tap="autenticar">{{misdatos.Design.divAutenticar.btnAceptar.Caption}}</paper-button>
 
-      <p>{{misdatos.DataSource.lblError}}<p>
-    </div>
-    <div id="divMenu" style="display :{{misdatos.Design.divMenu.Display}}">
-      Menu
-      <paper-button on-tap="grid" raised>{{misdatos.Design.divMenu.btnGrid.Caption}}</paper-button>
-      
-    </div>
-    <div id="divGrid" style="display:{{misdatos.Design.divGrid.Display}}">
-    	Grid    <paper-button on-tap="consultarFamilias" raised>{{misdatos.Design.divGrid.btnConsultarFamilias.Caption}}</paper-button>
-  
-    	<table>
-    		<tr>
-    			<td>{{misdatos.Design.divGrid.grdFamilias.Columns.colCodigo.Caption}}</td>
-    			<td>{{misdatos.Design.divGrid.grdFamilias.Columns.colDescripcion.Caption}}</td>
-    		</tr>
-    		<tr>
-    			<td>{{misdatos.Design.divGrid.grdFamilias.Columns.colCodigo.Cell0}}</td>
-    			<td>{{misdatos.Design.divGrid.grdFamilias.Columns.colDescripcion.Cell0}}</td>
-    		</tr>
-    		<tr>
-    			<td>{{misdatos.Design.divGrid.grdFamilias.Columns.colCodigo.Cell1}}</td>
-    			<td>{{misdatos.Design.divGrid.grdFamilias.Columns.colDescripcion.Cell1}}</td>
-    		</tr>
-    		<tr>
-    			<td>{{misdatos.Design.divGrid.grdFamilias.Columns.colCodigo.Cell2}}</td>
-    			<td>{{misdatos.Design.divGrid.grdFamilias.Columns.colDescripcion.Cell2}}</td>
-    		</tr>
-    		<tr>
-    			<td>{{misdatos.Design.divGrid.grdFamilias.Columns.colCodigo.Cell3}}</td>
-    			<td>{{misdatos.Design.divGrid.grdFamilias.Columns.colDescripcion.Cell3}}</td>
-    		</tr>
-    		<tr>
-    			<td>{{misdatos.Design.divGrid.grdFamilias.Columns.colCodigo.Cell4}}</td>
-    			<td>{{misdatos.Design.divGrid.grdFamilias.Columns.colDescripcion.Cell4}}</td>
-    		</tr>
-    	</table>
-    	
-    	<paper-button on-tap="atras" raised>{{misdatos.Design.divGrid.btnAtras.Caption}}</paper-button>
-    	<paper-input label="{{misdatos.Design.divGrid.txtPosicion.Label}}" value="{{misdatos.DataSource.divGrid.txtPosicion}}"></paper-input>
-    	<paper-button on-tap="adelante" raised>{{misdatos.Design.divGrid.btnAdelante.Caption}}</paper-button>
-    </div>
+	<test-autenticar 	design="{{misdatos.Design.divAutenticar}}" 
+						datasource="{{misdatos.DataSource.divAutenticar}}" 
+						event="{{misdatos.Event.divAutenticar}}">
+						
+	</test-autenticar>
+	<test-menu	design="{{misdatos.Design.divMenu}}" 
+						datasource="{{misdatos.DataSource.divMenu}}" 
+						event="{{misdatos.Event.divMenu}}">
+						
+	</test-menu>
+	
+	<test-grid	design="{{misdatos.Design.divGrid}}" 
+						datasource="{{misdatos.DataSource.divGrid}}" 
+						event="{{misdatos.Event.divGrid}}">
+	</test-grid>
   </template>
 
   <script>
@@ -85,35 +57,6 @@
           }
         };
       }
-
-      fireEvent(dir,firecontrol,event,argument){
-    	  var event={
-    			  FireControl:firecontrol,
-    			  Event:event,
-    			  Argument:argument
-    	  }
-    	  this.set(dir,event)
-      }
-      autenticar(){
-        this.fireEvent('misdatos.Event.divAutenticar',"btnAceptar","Click","")
-      }
-      
-      grid(){
-    	  this.fireEvent('misdatos.Event.divMenu',"btnGrid","Click","")
-        }
-      consultarFamilias(){
-    	  this.fireEvent('misdatos.Event.divGrid',"btnConsultarFamilias","Click","")
-        }
-      
-      atras(){
-    	  this.fireEvent('misdatos.Event.divGrid',"btnAtras","Click","")
-        }
-          
-      
-      adelante(){
-    	  this.fireEvent('misdatos.Event.divGrid',"btnAdelante","Click","")
-        }
-          
     }
 
     window.customElements.define(TestApp.is, TestApp);
