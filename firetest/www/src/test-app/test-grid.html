@@ -1,0 +1,85 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+
+
+<dom-module id="test-grid">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+   	<div id="divGrid" style="display:{{design.Display}}">
+    	Grid    <paper-button on-tap="consultarFamilias" raised>{{design.btnConsultarFamilias.Caption}}</paper-button>
+  
+    	<table>
+    		<tr>
+    			<td>{{design.grdFamilias.Columns.colCodigo.Caption}}</td>
+    			<td>{{design.grdFamilias.Columns.colDescripcion.Caption}}</td>
+    		</tr>
+    		<tr>
+    			<td>{{design.grdFamilias.Columns.colCodigo.Cell0}}</td>
+    			<td>{{design.grdFamilias.Columns.colDescripcion.Cell0}}</td>
+    		</tr>
+    		<tr>
+    			<td>{{design.grdFamilias.Columns.colCodigo.Cell1}}</td>
+    			<td>{{design.grdFamilias.Columns.colDescripcion.Cell1}}</td>
+    		</tr>
+    		<tr>
+    			<td>{{design.grdFamilias.Columns.colCodigo.Cell2}}</td>
+    			<td>{{design.grdFamilias.Columns.colDescripcion.Cell2}}</td>
+    		</tr>
+    		<tr>
+    			<td>{{design.grdFamilias.Columns.colCodigo.Cell3}}</td>
+    			<td>{{design.grdFamilias.Columns.colDescripcion.Cell3}}</td>
+    		</tr>
+    		<tr>
+    			<td>{{design.grdFamilias.Columns.colCodigo.Cell4}}</td>
+    			<td>{{design.grdFamilias.Columns.colDescripcion.Cell4}}</td>
+    		</tr>
+    	</table>
+    	
+    	<paper-button on-tap="atras" raised>{{design.btnAtras.Caption}}</paper-button>
+    	<paper-input label="{{design.txtPosicion.Label}}" value="{{datasource.txtPosicion}}"></paper-input>
+    	<paper-button on-tap="adelante" raised>{{design.btnAdelante.Caption}}</paper-button>
+    </div>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class GridApp extends Polymer.Element {
+      static get is() { return 'test-grid'; }
+      static get properties() {
+        return {
+            design:Object,
+            datasource:Object,
+            event:Object
+        };
+      }
+      consultarFamilias(){
+    	  this.set("event.Argument","");
+    	  this.set("event.Event","Click");
+    	  this.set("event.FireControl","btnConsultarFamilias");
+        }
+      
+      atras(){
+    	  this.set("event.Argument","");
+    	  this.set("event.Event","Click");
+    	  this.set("event.FireControl","btnAtras");
+        }
+          
+      
+      adelante(){
+    	  this.set("event.Argument","");
+    	  this.set("event.Event","Click");
+    	  this.set("event.FireControl","btnAdelante");
+        }
+          
+    }
+
+    window.customElements.define(GridApp.is, GridApp);
+  </script>
+</dom-module>

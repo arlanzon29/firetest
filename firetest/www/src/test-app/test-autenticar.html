@@ -1,0 +1,45 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+
+<dom-module id="test-autenticar">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+   
+    <div id="divAutenticar" style="display :{{design.Display}}">
+       <h2>Introduzca Usuario y contrasena</h2>
+      <paper-input label="{{design.txtUsuario.Label}}" value="{{datasource.txtUsuario}}"></paper-input>
+      <paper-input label="{{design.txtContrasena.Label}}" value="{{datasource.txtContrasena}}"></paper-input>
+      <paper-button on-tap="autenticar">{{design.btnAceptar.Caption}}</paper-button>
+      <p>{{datasource.lblError}}<p>
+    </div>
+     </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class AutenticarApp extends Polymer.Element {
+      static get is() { return 'test-autenticar'; }
+      static get properties() {
+        return {
+          design:Object,
+          datasource:Object,
+          event:Object
+        };
+      }
+      autenticar(){
+    	  this.set("event.Argument","");
+    	  this.set("event.Event","Click");
+    	  this.set("event.FireControl","btnAceptar");
+    	  
+      }
+    }
+      
+    window.customElements.define(AutenticarApp.is, AutenticarApp);
+  </script>
+</dom-module>

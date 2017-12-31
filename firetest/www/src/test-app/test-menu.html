@@ -1,0 +1,44 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+
+
+<dom-module id="test-menu">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+ 
+    <div id="divMenu" style="display :{{design.Display}}">
+      Menu<br>
+      <paper-button on-tap="grid" raised>{{design.btnGrid.Caption}}</paper-button>
+      
+    </div>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class MenuApp extends Polymer.Element {
+      static get is() { return 'test-menu'; }
+      static get properties() {
+        return {
+            design:Object,
+            datasource:Object,
+            event:Object
+        };
+      }
+      
+      grid(){
+    	  this.set("event.Argument","");
+    	  this.set("event.Event","Click");
+    	  this.set("event.FireControl","btnGrid");
+        }
+    }
+
+    window.customElements.define(MenuApp.is, MenuApp);
+  </script>
+</dom-module>
