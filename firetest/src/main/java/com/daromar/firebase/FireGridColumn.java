@@ -10,6 +10,10 @@ public class FireGridColumn {
 	private String path;
 	private String columnName="";
 	
+	
+	public String getValue(int pos) {
+		return values[pos];
+	}
 	public String getColumnName() {
 		return columnName;
 	}

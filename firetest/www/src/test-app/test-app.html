@@ -2,6 +2,7 @@
 <link rel="import" href="test-autenticar.html">
 <link rel="import" href="test-menu.html">
 <link rel="import" href="test-grid.html">
+<link rel="import" href="test-edit.html">
 
 
 <dom-module id="test-app">
@@ -46,6 +47,12 @@
 							datasource="{{misdatos.DataSource.divGrid}}" 
 							event="{{misdatos.Event.divGrid}}">
 		</test-grid>
+		<test-edit	design="{{misdatos.Design.divEdit}}" 
+							datasource="{{misdatos.DataSource.divEdit}}" 
+							event="{{misdatos.Event.divEdit}}">
+							
+		</test-edit>
+
 		</div>
 	
   </template>

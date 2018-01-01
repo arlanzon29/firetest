@@ -48,7 +48,7 @@
 		  			<table cellpadding="0" cellspacing="0" >
 		  			<tr>
 		  				<td>
-		  					<img src="images/desconocido.jpg" style="width:50px;height:50px;">
+		  					<img id="img00" src="images/desconocido.jpg" style="width:50px;height:50px;" on-click="edit">
 		  				</td>
 		  				<td>
 				  			<b>{{design.grdFamilias.Columns.colCodigo.Cell0}}</b>
@@ -64,7 +64,7 @@
 		  			<table>
 		  			<tr>
 		  				<td>
-		  					<img src="images/desconocido.jpg" style="width:50px;height:50px;">
+		  					<img id="img01" src="images/desconocido.jpg" style="width:50px;height:50px;" on-click="edit">
 		  				</td>
 		  				<td>
 				  			<b>{{design.grdFamilias.Columns.colCodigo.Cell1}}</b>
@@ -80,7 +80,7 @@
 		  			<table>
 		  			<tr>
 		  				<td>
-		  					<img src="images/desconocido.jpg" style="width:50px;height:50px;">
+		  					<img id="img02" src="images/desconocido.jpg" style="width:50px;height:50px;" on-click="edit">
 		  				</td>
 		  				<td>
 				  			<b>{{design.grdFamilias.Columns.colCodigo.Cell2}}</b>
@@ -96,7 +96,7 @@
 		  			<table>
 		  			<tr>
 		  				<td>
-		  					<img src="images/desconocido.jpg" style="width:50px;height:50px;">
+		  					<img id="img03" src="images/desconocido.jpg" style="width:50px;height:50px;" on-click="edit">
 		  				</td>
 		  				<td>
 				  			<b>{{design.grdFamilias.Columns.colCodigo.Cell3}}</b>
@@ -112,7 +112,7 @@
 		  			<table>
 		  			<tr>
 		  				<td>
-		  					<img src="images/desconocido.jpg" style="width:50px;height:50px;">
+		  					<img id="img04" src="images/desconocido.jpg" style="width:50px;height:50px;" on-click="edit">
 		  				</td>
 		  				<td>
 				  			<b>{{design.grdFamilias.Columns.colCodigo.Cell4}}</b>
@@ -181,7 +181,14 @@
     	  this.set("event.Event","Click");
     	  this.set("event.FireControl","btnRegresar");
         }
-
+      
+      edit(e){
+   		var id=e.target.id;
+   		var pos=id.substring(3);
+    	  this.set("event.Argument",pos);
+    	  this.set("event.Event","ImageClick");
+    	  this.set("event.FireControl","grdFamilias");
+      }
     }
 
     window.customElements.define(GridApp.is, GridApp);

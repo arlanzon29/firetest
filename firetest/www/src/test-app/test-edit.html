@@ -1,0 +1,52 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+
+
+<dom-module id="test-edit">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+   
+    <div id="divEdit" style="display :{{design.Display}}">
+    	<table cellpadding="0" cellspacing="0" style="width:100%;background-color: blue;">
+			   		<tr>
+				   		<td style="width:80%">
+				   		   	 <h2 style="width:100%;text-align: center;">Familia</h2>
+				   		</td>
+				   		
+			   		</tr>
+		</table>
+		    <br>
+		    <br>
+
+      
+      <paper-input label="{{design.txtCode.Label}}" value="{{datasource.txtCode}}"></paper-input>
+      <paper-input label="{{design.txtName.Label}}" value="{{datasource.txtName}}"></paper-input>
+      <paper-button on-tap="autenticar">{{design.btnAceptar.Caption}}</paper-button>
+      
+    </div>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class EditApp extends Polymer.Element {
+      static get is() { return 'test-edit'; }
+      static get properties() {
+        return {
+            design:Object,
+            datasource:Object,
+            event:Object
+        };
+      }
+      
+    }
+
+    window.customElements.define(EditApp.is, EditApp);
+  </script>
+</dom-module>

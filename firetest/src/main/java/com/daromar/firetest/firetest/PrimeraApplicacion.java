@@ -17,6 +17,8 @@ implements IFireEvent {
 	private PADivAutenticar divAutenticar;
 	private PADivMenu divMenu;
 	private PADivGrid divGrid;
+	private PADivEdit divEdit;
+	
 	
 	
 	public PrimeraApplicacion(String basePath,String sqllite) {
@@ -38,6 +40,10 @@ implements IFireEvent {
 		divGrid.AddEventHandler(this);
 		this.AddControl(divGrid);
 		
+		divEdit=new PADivEdit("divEdit",this.connection);
+		divEdit.setDefaultDisplay("none");
+		divEdit.AddEventHandler(this);
+		this.AddControl(divEdit);
 		
 		this.InitializeApp();
 	}
@@ -65,6 +71,10 @@ implements IFireEvent {
 			if (arg.getEvent().equals("REGRESAR")) {
 				divMenu.setDisplay("block");
 				divGrid.setDisplay("none");
+			}else if (arg.getEvent().equals("IMAGECLICK")) {
+				divEdit.Get(arg.getArgument());
+				divGrid.setDisplay("none");
+				divEdit.setDisplay("block");
 			}
 		}
 		

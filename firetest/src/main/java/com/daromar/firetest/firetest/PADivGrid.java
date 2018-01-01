@@ -43,6 +43,7 @@ extends FireDiv{
 		
 		grdFamilias=new FireGrid("grdFamilias",conn);
 		grdFamilias.setTableName("GISAC_OFAM");
+		grdFamilias.AddEventHandler(this);
 		grdFamilias.setRows(5);
 		
 		colCodigo=new FireGridColumn("colCodigo");
@@ -88,12 +89,17 @@ extends FireDiv{
 			Adelante();
 		}else if (arg.getFireControl().getId().equals(btnRegresar.getId()) && arg.getEvent().equals("Click")){
 			Regresar();
-		}
-		
-		
-		
+		}else if (arg.getFireControl().getId().equals(grdFamilias.getId()) && arg.getEvent().equals("ImageClick")){
+			ImageClick(arg);
+		}	
 	}
 	
+	private void ImageClick(FireEventArg arg) {
+		int pos=Integer.parseInt(arg.getArgument());		
+			
+		FireEventArg arg2=new FireEventArg(this,"IMAGECLICK",colCodigo.getValue(pos));				
+		eventHandler.FireEvent(arg2);
+	}
 	
 	private void Regresar() {
 		FireEventArg arg=new FireEventArg(this,"REGRESAR","");				
