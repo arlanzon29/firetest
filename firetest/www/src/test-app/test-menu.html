@@ -9,14 +9,28 @@
         display: block;
       }
     </style>
- 
+   
     <div id="divMenu" style="display :{{design.Display}}">
-      Menu<br>
-      <paper-button on-tap="grid" raised>{{design.btnGrid.Caption}}</paper-button>
-      <br>
-      <br>
-      <paper-button on-tap="desconectar" raised>{{design.btnDesconectar.Caption}}</paper-button>
-      
+    <table cellpadding="0" cellspacing="0" style="width:100%;background-color: blue;">
+	   		<tr>
+		   		<td style="width:80%">
+		   		   	 <h2 style="width:100%;text-align: center;">Menus</h2>
+		   		</td>
+		   		
+	   		</tr>
+   		</table>
+    <br>
+    <br>
+ 		<div style="text-align: center;">
+      		<paper-button on-tap="grid" raised style="width:75%;" >{{design.btnGrid.Caption}}</paper-button>
+		      <br>
+		      <br>
+		      <br>
+		      <br>
+		      <br>
+		      <br>      
+		      <paper-button on-tap="desconectar" raised style="width:75%">{{design.btnDesconectar.Caption}}</paper-button>
+      </div>
     </div>
   </template>
 

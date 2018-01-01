@@ -8,43 +8,138 @@
       :host {
         display: block;
       }
+      td { 
+		    padding: 0px;
+		}
+		
+	table { 
+	    border-spacing: 0px;
+	    border-collapse: separate;
+	}
     </style>
    	<div id="divGrid" style="display:{{design.Display}}">
-    	Grid    <paper-button on-tap="consultarFamilias" raised>{{design.btnConsultarFamilias.Caption}}</paper-button>
-  
-    	<table>
-    		<tr>
-    			<td>{{design.grdFamilias.Columns.colCodigo.Caption}}</td>
-    			<td>{{design.grdFamilias.Columns.colDescripcion.Caption}}</td>
-    		</tr>
-    		<tr>
-    			<td>{{design.grdFamilias.Columns.colCodigo.Cell0}}</td>
-    			<td>{{design.grdFamilias.Columns.colDescripcion.Cell0}}</td>
-    		</tr>
-    		<tr>
-    			<td>{{design.grdFamilias.Columns.colCodigo.Cell1}}</td>
-    			<td>{{design.grdFamilias.Columns.colDescripcion.Cell1}}</td>
-    		</tr>
-    		<tr>
-    			<td>{{design.grdFamilias.Columns.colCodigo.Cell2}}</td>
-    			<td>{{design.grdFamilias.Columns.colDescripcion.Cell2}}</td>
-    		</tr>
-    		<tr>
-    			<td>{{design.grdFamilias.Columns.colCodigo.Cell3}}</td>
-    			<td>{{design.grdFamilias.Columns.colDescripcion.Cell3}}</td>
-    		</tr>
-    		<tr>
-    			<td>{{design.grdFamilias.Columns.colCodigo.Cell4}}</td>
-    			<td>{{design.grdFamilias.Columns.colDescripcion.Cell4}}</td>
-    		</tr>
-    	</table>
+   		<table  style="width:100%;background-color: blue;">
+	   		<tr>
+		   		<td style="width:10%">
+		   			<img src="images/home.png" on-click="regresar">
+		   		</td>
+		   		<td style="width:80%">
+		   		   	 <h2 style="width:100%;text-align: center;">Familias</h2>
+		   		</td>
+		   		<td style="width:10%">
+		   		</td>
+	   		</tr>
+   		</table>
+   	
+   		<table>
+   		<tr>
+   			<td style="width:75%">
+   				<paper-input label="Busqueda" value="" ></paper-input>
+   			</td>
+   			<td>
+   				<img src="images/search.png" on-click="consultarFamilias">
+   			</td>
+   		</tr>
+   		</table>
+   		
+   		<div style="text-align: center;">
+	   		<paper-card heading="" style="width:90%" >
+	  			<div class="card-content">
+		  			<table cellpadding="0" cellspacing="0" >
+		  			<tr>
+		  				<td>
+		  					<img src="images/desconocido.jpg" style="width:50px;height:50px;">
+		  				</td>
+		  				<td>
+				  			<b>{{design.grdFamilias.Columns.colCodigo.Cell0}}</b>
+				  			<br>
+				  			{{design.grdFamilias.Columns.colDescripcion.Cell0}}</div>
+		  				</td>
+		  			</table>
+		  			</div>
+			</paper-card>
+			
+	   		<paper-card heading="" style="width:90%" >
+	  			<div class="card-content">
+		  			<table>
+		  			<tr>
+		  				<td>
+		  					<img src="images/desconocido.jpg" style="width:50px;height:50px;">
+		  				</td>
+		  				<td>
+				  			<b>{{design.grdFamilias.Columns.colCodigo.Cell1}}</b>
+				  			<br>
+				  			{{design.grdFamilias.Columns.colDescripcion.Cell1}}</div>
+		  				</td>
+		  			</table>
+		  			</div>
+			</paper-card>
+			
+			<paper-card heading="" style="width:90%" >
+	  			<div class="card-content">
+		  			<table>
+		  			<tr>
+		  				<td>
+		  					<img src="images/desconocido.jpg" style="width:50px;height:50px;">
+		  				</td>
+		  				<td>
+				  			<b>{{design.grdFamilias.Columns.colCodigo.Cell2}}</b>
+				  			<br>
+				  			{{design.grdFamilias.Columns.colDescripcion.Cell2}}</div>
+		  				</td>
+		  			</table>
+		  			</div>
+			</paper-card>
+			
+			<paper-card heading="" style="width:90%" >
+	  			<div class="card-content">
+		  			<table>
+		  			<tr>
+		  				<td>
+		  					<img src="images/desconocido.jpg" style="width:50px;height:50px;">
+		  				</td>
+		  				<td>
+				  			<b>{{design.grdFamilias.Columns.colCodigo.Cell3}}</b>
+				  			<br>
+				  			{{design.grdFamilias.Columns.colDescripcion.Cell3}}</div>
+		  				</td>
+		  			</table>
+		  			</div>
+			</paper-card>
+			
+			<paper-card heading="" style="width:90%" >
+	  			<div class="card-content">
+		  			<table>
+		  			<tr>
+		  				<td>
+		  					<img src="images/desconocido.jpg" style="width:50px;height:50px;">
+		  				</td>
+		  				<td>
+				  			<b>{{design.grdFamilias.Columns.colCodigo.Cell4}}</b>
+				  			<br>
+				  			{{design.grdFamilias.Columns.colDescripcion.Cell4}}</div>
+		  				</td>
+		  			</table>
+		  			</div>
+			</paper-card>
+			
     	
-    	<paper-button on-tap="atras" raised>{{design.btnAtras.Caption}}</paper-button>
-    	<paper-input label="{{design.txtPosicion.Label}}" value="{{datasource.txtPosicion}}"></paper-input>
-    	<paper-button on-tap="adelante" raised>{{design.btnAdelante.Caption}}</paper-button>
-    	<br>
-    	<paper-button on-tap="regresar" raised>{{design.btnRegresar.Caption}}</paper-button>
-    	
+	    	<table>
+		    	<tr>
+		    		<td>
+		    			<img src="images/left.png" on-click="atras">
+		    		</td>
+		    		<td>
+		    			<p>{{datasource.txtPosicion}}</p>
+		    		
+		    		</td>
+		    		<td>
+		    			<img src="images/right.png" on-click="adelante">
+		    		</td>
+		    	</tr>
+	    	</table>
+		</div>
+    	    	
     </div>
   </template>
 

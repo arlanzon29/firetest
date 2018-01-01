@@ -27,7 +27,8 @@
     </firebase-document>
     
     <div	style="display:{{displayLoading}}" >
-    LOADING</div>
+    <img src="images/loading.gif">
+    </div>
 
 	<div style="display:{{displayApp}}">
 		<test-autenticar 	design="{{misdatos.Design.divAutenticar}}" 
@@ -89,7 +90,7 @@
     					  var app=this;
     					  setTimeout(function(){
 	        			  app.online=true;
-	        			  app.set("misdatos.Event.App.Event","Reset");
+	        			  //app.set("misdatos.Event.App.Event","Reset");
 	        			  app.displayLoading="none";
 	        			  app.displayApp="block";
     					  }, 1000);
