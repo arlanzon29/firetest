@@ -76,6 +76,15 @@ implements IFireEvent {
 				divGrid.setDisplay("none");
 				divEdit.setDisplay("block");
 			}
+		}else if (arg.getFireControl().getId().equals(divEdit.getId())) {
+			if (arg.getEvent().equals("CANCELAR")) {
+				divGrid.setDisplay("block");
+				divEdit.setDisplay("none");
+			}else if (arg.getEvent().equals("ACEPTAR")) {
+				divGrid.Change(arg.getArgument());
+				divGrid.setDisplay("block");
+				divEdit.setDisplay("none");
+			}
 		}
 		
 	}

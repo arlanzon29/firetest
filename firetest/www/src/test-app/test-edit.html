@@ -25,7 +25,8 @@
       
       <paper-input label="{{design.txtCode.Label}}" value="{{datasource.txtCode}}"></paper-input>
       <paper-input label="{{design.txtName.Label}}" value="{{datasource.txtName}}"></paper-input>
-      <paper-button on-tap="autenticar">{{design.btnAceptar.Caption}}</paper-button>
+      <paper-button on-tap="aceptar">{{design.btnAceptar.Caption}}</paper-button>
+      <paper-button on-tap="cancelar">{{design.btnCancelar.Caption}}</paper-button>
       
     </div>
   </template>
@@ -43,6 +44,20 @@
             datasource:Object,
             event:Object
         };
+      }
+      
+      aceptar(){
+    	  this.set("event.Argument","");
+    	  this.set("event.Event","Click");
+    	  this.set("event.FireControl","btnAceptar");
+    	  
+      }
+      
+      cancelar(){
+    	  this.set("event.Argument","");
+    	  this.set("event.Event","Click");
+    	  this.set("event.FireControl","btnCancelar");
+    	  
       }
       
     }

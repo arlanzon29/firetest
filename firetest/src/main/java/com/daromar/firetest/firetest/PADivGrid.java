@@ -30,6 +30,8 @@ extends FireDiv{
 	private FireGridColumn colCodigo;
 	private FireGridColumn colDescripcion;
 	
+	private int lastPosicion; 
+	
 	public PADivGrid(String id,Connection conn) {
 		super(id);
 		// TODO Auto-generated constructor stub
@@ -95,7 +97,8 @@ extends FireDiv{
 	}
 	
 	private void ImageClick(FireEventArg arg) {
-		int pos=Integer.parseInt(arg.getArgument());		
+		int pos=Integer.parseInt(arg.getArgument());
+		this.lastPosicion=pos;
 			
 		FireEventArg arg2=new FireEventArg(this,"IMAGECLICK",colCodigo.getValue(pos));				
 		eventHandler.FireEvent(arg2);
@@ -117,4 +120,11 @@ extends FireDiv{
 		txtPosicion.setValue(""+grdFamilias.getPage());
 	}
 	
+	public void Change(String code) {
+		OFamService service=new OFamService();
+		OFAM familia=service.GetByKey(code, conn);
+		colCodigo.setValue(this.lastPosicion, familia.getCode());
+		colDescripcion.setValue(this.lastPosicion, familia.getName());
+		
+	}
 }
