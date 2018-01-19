@@ -22,7 +22,7 @@
 
     <firebase-document
         app-name="testAplicacion"
-        path="/app3"
+        path="{{firePath}}"
         data="{{misdatos}}"
         on-data-changed="CheckStatus">
     </firebase-document>
@@ -80,6 +80,12 @@
           },
           displayApp:{
         	value:"none"  
+          },
+          firePath:{
+        	  type: String,
+        	  notify: true,
+        	  reflectToAttribute: true,
+        	  value:"/app3"
           }
         };
       }
@@ -87,6 +93,8 @@
       
       ready(){
     	  super.ready();
+    	 this.firePath=this.findGetParameter("path");
+    
       }
       
       CheckStatus(){
@@ -108,6 +116,19 @@
     	  }
     	  
       }
+      
+       findGetParameter(parameterName) {
+  	    var result = null,
+  	        tmp = [];
+  	    location.search
+  	        .substr(1)
+  	        .split("&")
+  	        .forEach(function (item) {
+  	          tmp = item.split("=");
+  	          if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+  	        });
+  	    return result;
+  		}
     }
 
     window.customElements.define(TestApp.is, TestApp);

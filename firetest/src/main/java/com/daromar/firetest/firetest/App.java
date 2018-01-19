@@ -50,6 +50,7 @@ public class App
 		}
        
        PrimeraApplicacion app=new PrimeraApplicacion("app3","C:/Users/daniel.rodriguez/git/firetest/firetest/database/firebase.db3");
+       PrimeraApplicacion app2=new PrimeraApplicacion("app1","C:/Users/daniel.rodriguez/git/firetest/firetest/database/firebase.db3");
        
       // PrimeraApplicacion app=new PrimeraApplicacion("app3","C:/borrar/firebase.db3");
      
