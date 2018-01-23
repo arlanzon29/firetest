@@ -1,0 +1,142 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+
+
+<dom-module id="olbapro-grid">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      td { 
+		    padding: 0px;
+		}
+		
+	table { 
+	    border-spacing: 0px;
+	    border-collapse: separate;
+	}
+    </style>
+
+   		
+   		<div style="text-align: center;">
+	   		<paper-card heading="" style="width:90%" >
+	  			<div class="card-content">
+		  			<table cellpadding="0" cellspacing="0" >
+		  			<tr>
+		  				<td>
+		  					<img id="img00" src="images/desconocido.jpg" style="width:50px;height:50px;" on-click="edit">
+		  				</td>
+		  				<td>
+				  			<b>{{design.colCode.Cell0}}</b>
+				  			<br>
+				  			{{design.colName.Cell0}}
+		  				</td>
+		  			</table>
+		  			</div>
+			</paper-card>
+			
+	   		<paper-card heading="" style="width:90%" >
+	  			<div class="card-content">
+		  			<table>
+		  			<tr>
+		  				<td>
+		  					<img id="img01" src="images/desconocido.jpg" style="width:50px;height:50px;" on-click="edit">
+		  				</td>
+		  				<td>
+				  			<b>{{design.colCode.Cell1}}</b>
+				  			<br>
+				  			{{design.colName.Cell1}}
+		  				</td>
+		  			</table>
+		  			</div>
+			</paper-card>
+			
+			<paper-card heading="" style="width:90%" >
+	  			<div class="card-content">
+		  			<table>
+		  			<tr>
+		  				<td>
+		  					<img id="img02" src="images/desconocido.jpg" style="width:50px;height:50px;" on-click="edit">
+		  				</td>
+		  				<td>
+				  			<b>{{design.colCode.Cell2}}</b>
+				  			<br>
+				  			{{design.colName.Cell2}}
+		  				</td>
+		  			</table>
+		  			</div>
+			</paper-card>
+			
+			<paper-card heading="" style="width:90%" >
+	  			<div class="card-content">
+		  			<table>
+		  			<tr>
+		  				<td>
+		  					<img id="img03" src="images/desconocido.jpg" style="width:50px;height:50px;" on-click="edit">
+		  				</td>
+		  				<td>
+				  			<b>{{design.colCode.Cell3}}</b>
+				  			<br>
+				  			{{design.colName.Cell3}}
+		  				</td>
+		  			</table>
+		  			</div>
+			</paper-card>
+			
+			<paper-card heading="" style="width:90%" >
+	  			<div class="card-content">
+		  			<table>
+		  			<tr>
+		  				<td>
+		  					<img id="img04" src="images/desconocido.jpg" style="width:50px;height:50px;" on-click="edit">
+		  				</td>
+		  				<td>
+				  			<b>{{design.colCode.Cell4}}</b>
+				  			<br>
+				  			{{design.colName.Cell4}}
+		  				</td>
+		  			</table>
+		  			</div>
+			</paper-card>
+			
+    	
+    	    	
+    </div>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class OlbaproGrid extends Polymer.Element {
+      static get is() { return 'olbapro-grid'; }
+      static get properties() {
+        return {
+            design:Object,
+            event:Object,
+            gridName:{
+          	  type: String,
+          	  notify: true,
+          	  reflectToAttribute: true,
+          	  value:""
+            }
+           
+            
+        };
+      }
+     
+      
+      edit(e){
+   		var id=e.target.id;
+   		var pos=id.substring(3);
+    	  this.set("event.Argument",pos);
+    	  this.set("event.Event","ImageClick");
+    	  this.set("event.FireControl",this.gridName);
+      }
+    }
+
+    window.customElements.define(OlbaproGrid.is, OlbaproGrid);
+  </script>
+</dom-module>
