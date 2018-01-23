@@ -27,8 +27,8 @@ extends FireDiv{
 	private FireTextBox txtPosicion;
 
 	private FireGrid grdFamilias;
-	private FireGridColumn colCodigo;
-	private FireGridColumn colDescripcion;
+	private FireGridColumn colCode;
+	private FireGridColumn colName;
 	
 	private int lastPosicion; 
 	
@@ -48,15 +48,15 @@ extends FireDiv{
 		grdFamilias.AddEventHandler(this);
 		grdFamilias.setRows(5);
 		
-		colCodigo=new FireGridColumn("colCodigo");
-		colCodigo.setCaption("Código");
-		colCodigo.setColumnName("CODE");
-		grdFamilias.AddColumn(colCodigo);
+		colCode=new FireGridColumn("colCode");
+		colCode.setCaption("Código");
+		colCode.setColumnName("CODE");
+		grdFamilias.AddColumn(colCode);
 		
-		colDescripcion=new FireGridColumn("colDescripcion");
-		colDescripcion.setCaption("Descripción");
-		colDescripcion.setColumnName("NAME");
-		grdFamilias.AddColumn(colDescripcion);
+		colName=new FireGridColumn("colName");
+		colName.setCaption("Descripción");
+		colName.setColumnName("NAME");
+		grdFamilias.AddColumn(colName);
 		this.AddControl(grdFamilias);
 		
 		
@@ -100,7 +100,7 @@ extends FireDiv{
 		int pos=Integer.parseInt(arg.getArgument());
 		this.lastPosicion=pos;
 			
-		FireEventArg arg2=new FireEventArg(this,"IMAGECLICK",colCodigo.getValue(pos));				
+		FireEventArg arg2=new FireEventArg(this,"IMAGECLICK",colCode.getValue(pos));				
 		eventHandler.FireEvent(arg2);
 	}
 	
@@ -123,8 +123,8 @@ extends FireDiv{
 	public void Change(String code) {
 		OFamService service=new OFamService();
 		OFAM familia=service.GetByKey(code, conn);
-		colCodigo.setValue(this.lastPosicion, familia.getCode());
-		colDescripcion.setValue(this.lastPosicion, familia.getName());
+		colCode.setValue(this.lastPosicion, familia.getCode());
+		colName.setValue(this.lastPosicion, familia.getName());
 		
 	}
 }

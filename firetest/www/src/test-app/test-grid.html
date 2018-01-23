@@ -1,5 +1,5 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
-
+<link rel="import" href="olbapro-grid.html">
 
 
 <dom-module id="test-grid">
@@ -32,97 +32,21 @@
    		</table>
    	
    		<table>
-   		<tr>
-   			<td style="width:75%">
-   				<paper-input label="Busqueda" value="" ></paper-input>
-   			</td>
-   			<td>
-   				<img src="images/search.png" on-click="consultarFamilias">
-   			</td>
-   		</tr>
+   			<tr>
+	   			<td style="width:75%">
+	   				<paper-input label="Busqueda" value="" ></paper-input>
+	   			</td>
+	   			<td>
+	   				<img src="images/search.png" on-click="consultarFamilias">
+	   			</td>
+   			</tr>
    		</table>
    		
-   		<div style="text-align: center;">
-	   		<paper-card heading="" style="width:90%" >
-	  			<div class="card-content">
-		  			<table cellpadding="0" cellspacing="0" >
-		  			<tr>
-		  				<td>
-		  					<img id="img00" src="images/desconocido.jpg" style="width:50px;height:50px;" on-click="edit">
-		  				</td>
-		  				<td>
-				  			<b>{{design.grdFamilias.Columns.colCodigo.Cell0}}</b>
-				  			<br>
-				  			{{design.grdFamilias.Columns.colDescripcion.Cell0}}</div>
-		  				</td>
-		  			</table>
-		  			</div>
-			</paper-card>
+   		
 			
-	   		<paper-card heading="" style="width:90%" >
-	  			<div class="card-content">
-		  			<table>
-		  			<tr>
-		  				<td>
-		  					<img id="img01" src="images/desconocido.jpg" style="width:50px;height:50px;" on-click="edit">
-		  				</td>
-		  				<td>
-				  			<b>{{design.grdFamilias.Columns.colCodigo.Cell1}}</b>
-				  			<br>
-				  			{{design.grdFamilias.Columns.colDescripcion.Cell1}}</div>
-		  				</td>
-		  			</table>
-		  			</div>
-			</paper-card>
-			
-			<paper-card heading="" style="width:90%" >
-	  			<div class="card-content">
-		  			<table>
-		  			<tr>
-		  				<td>
-		  					<img id="img02" src="images/desconocido.jpg" style="width:50px;height:50px;" on-click="edit">
-		  				</td>
-		  				<td>
-				  			<b>{{design.grdFamilias.Columns.colCodigo.Cell2}}</b>
-				  			<br>
-				  			{{design.grdFamilias.Columns.colDescripcion.Cell2}}</div>
-		  				</td>
-		  			</table>
-		  			</div>
-			</paper-card>
-			
-			<paper-card heading="" style="width:90%" >
-	  			<div class="card-content">
-		  			<table>
-		  			<tr>
-		  				<td>
-		  					<img id="img03" src="images/desconocido.jpg" style="width:50px;height:50px;" on-click="edit">
-		  				</td>
-		  				<td>
-				  			<b>{{design.grdFamilias.Columns.colCodigo.Cell3}}</b>
-				  			<br>
-				  			{{design.grdFamilias.Columns.colDescripcion.Cell3}}</div>
-		  				</td>
-		  			</table>
-		  			</div>
-			</paper-card>
-			
-			<paper-card heading="" style="width:90%" >
-	  			<div class="card-content">
-		  			<table>
-		  			<tr>
-		  				<td>
-		  					<img id="img04" src="images/desconocido.jpg" style="width:50px;height:50px;" on-click="edit">
-		  				</td>
-		  				<td>
-				  			<b>{{design.grdFamilias.Columns.colCodigo.Cell4}}</b>
-				  			<br>
-				  			{{design.grdFamilias.Columns.colDescripcion.Cell4}}</div>
-		  				</td>
-		  			</table>
-		  			</div>
-			</paper-card>
-			
+    	<olbapro-grid design={{design.grdFamilias.Columns}} grid-name="grdFamilias" event="{{event}}"></olbapro-grid>   	
+    	
+    	
     	
 	    	<table>
 		    	<tr>
@@ -138,8 +62,7 @@
 		    		</td>
 		    	</tr>
 	    	</table>
-		</div>
-    	    	
+   	    	
     </div>
   </template>
 
@@ -182,13 +105,7 @@
     	  this.set("event.FireControl","btnRegresar");
         }
       
-      edit(e){
-   		var id=e.target.id;
-   		var pos=id.substring(3);
-    	  this.set("event.Argument",pos);
-    	  this.set("event.Event","ImageClick");
-    	  this.set("event.FireControl","grdFamilias");
-      }
+   
     }
 
     window.customElements.define(GridApp.is, GridApp);
