@@ -8,7 +8,10 @@
         display: block;
       }
     </style>
-    <div id="divAutenticar" style="display :{{design.Display}}">
+     <firebase-auth id="auth"  app-name="testAplicacion" user="{{user}}" provider="google" on-error="handleError">
+	</firebase-auth>
+   
+    <div id="divAutenticar" >
 		<table cellpadding="0" cellspacing="0" style="width:100%;background-color: blue;">
 			   		<tr>
 				   		<td style="width:80%">
@@ -21,10 +24,24 @@
 		    <br>
 
        <h2>Introduzca Usuario y contrasena</h2>
-      <paper-input label="{{design.txtUsuario.Label}}" value="{{datasource.txtUsuario}}"></paper-input>
-      <paper-input label="{{design.txtContrasena.Label}}" value="{{datasource.txtContrasena}}"></paper-input>
-      <paper-button on-tap="autenticar">{{design.btnAceptar.Caption}}</paper-button>
+      <paper-input label="User" value=""></paper-input>
+      <paper-input label="Password" value="Contraseña"></paper-input>
+      <paper-button on-tap="autenticar">Autentica</paper-button>
+   		<paper-button on-tap="autenticarGoogle">Google</paper-button>
+		<paper-button on-tap="Continuar">Continuar></paper-button>
+	
       <p>{{datasource.lblError}}<p>
+
+ <div hidden$="[[!user]]">
+        <table>
+          <tr><th>uid</th> <td>[[user.uid]]</td></tr>
+          <tr><th>displayName</th> <td>[[user.displayName]]</td></tr>
+          <tr><th>email</th> <td>[[user.email]]</td></tr>
+          <tr><th>emailVerified</th> <td>[[user.emailVerified]]</td></tr>
+        </table>
+
+        <paper-button  on-tap="signOut">Sign Out</paper-button>
+      </div>
     </div>
      </template>
 
@@ -42,12 +59,14 @@
           event:Object
         };
       }
-      autenticar(){
-    	  this.set("event.Argument","");
-    	  this.set("event.Event","Click");
-    	  this.set("event.FireControl","btnAceptar");
-    	  
+      autenticarGoogle(){
+    	  this.error = null;
+          this.$.auth.signInWithPopup();
       }
+      signOut(){
+          this.error = null;
+          this.$.auth.signOut();
+        };
     }
       
     window.customElements.define(AutenticarApp.is, AutenticarApp);

@@ -20,6 +20,8 @@
       auth-domain="gamonal29.firebaseapp.com"
       database-url="https://gamonal29.firebaseio.com">
     </firebase-app>
+    
+       
 
     <firebase-document
         app-name="testAplicacion"
@@ -29,15 +31,15 @@
     </firebase-document>
     
     <div	style="display:{{displayLoading}}" >
-    <img src="images/loading.gif">
-    </div>
-
-	<div style="display:{{displayApp}}">
 		<test-autenticar 	design="{{misdatos.Design.divAutenticar}}" 
 							datasource="{{misdatos.DataSource.divAutenticar}}" 
 							event="{{misdatos.Event.divAutenticar}}">
 							
 		</test-autenticar>
+    </div>
+
+	<div style="display:{{displayApp}}">
+	   
 		<test-menu	design="{{misdatos.Design.divMenu}}" 
 							datasource="{{misdatos.DataSource.divMenu}}" 
 							event="{{misdatos.Event.divMenu}}">
@@ -91,7 +93,7 @@
         };
       }
       
-      
+
       ready(){
     	  super.ready();
     	 this.firePath="/app1";

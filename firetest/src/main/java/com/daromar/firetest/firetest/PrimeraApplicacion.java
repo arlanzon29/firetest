@@ -14,7 +14,7 @@ public class PrimeraApplicacion extends FireAppSQLLite
 implements IFireEvent {
 	
 
-	private PADivAutenticar divAutenticar;
+	//private PADivAutenticar divAutenticar;
 	private PADivMenu divMenu;
 	private PADivGrid divGrid;
 	private PADivEdit divEdit;
@@ -24,13 +24,13 @@ implements IFireEvent {
 	public PrimeraApplicacion(String basePath,String sqllite) {
 		super(basePath,sqllite);
 		
-		divAutenticar=new PADivAutenticar("divAutenticar");
+		/*divAutenticar=new PADivAutenticar("divAutenticar");
 		divAutenticar.setDefaultDisplay("block");
 		divAutenticar.AddEventHandler(this);
-		this.AddControl(divAutenticar);
+		this.AddControl(divAutenticar);*/
 		
 		divMenu=new PADivMenu("divMenu");
-		divMenu.setDefaultDisplay("none");
+		divMenu.setDefaultDisplay("block");
 		divMenu.AddEventHandler(this);
 		this.AddControl(divMenu);
 		
@@ -52,17 +52,17 @@ implements IFireEvent {
 	@Override
 	public void FireEvent(FireEventArg arg) {
 		// TODO Auto-generated method stub
-		if (arg.getFireControl().getId().equals(divAutenticar.getId()) && arg.getEvent().equals(("AUTENTICAR"))){
+		/*if (arg.getFireControl().getId().equals(divAutenticar.getId()) && arg.getEvent().equals(("AUTENTICAR"))){
 			divAutenticar.setDisplay("none");
 			divMenu.setDisplay("block");
 		}
-		else if (arg.getFireControl().getId().equals(divMenu.getId())) {
+		else*/ if (arg.getFireControl().getId().equals(divMenu.getId())) {
 			if (arg.getEvent().equals("FAMILIAS")) {
 				divMenu.setDisplay("none");
 				divGrid.setDisplay("block");
 			}else if (arg.getEvent().equals("DESCONECTAR")) {
 				this.ResetApp();
-				divAutenticar.setDisplay("block");
+				//divAutenticar.setDisplay("block");
 				divMenu.setDisplay("none");
 
 			}
