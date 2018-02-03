@@ -23,7 +23,7 @@ public class App
 {
 	
 	public void ConectarFirebase() throws Exception{
-		 FileInputStream serviceAccount = new FileInputStream("C:/Users/daniel.rodriguez/git/firetest/firetest/firebase/gamonal29-5da0fbfe8866.json");
+		 FileInputStream serviceAccount = new FileInputStream("C:/olbapro/service/gamonal29-5da0fbfe8866.json");
 
 	        FirebaseOptions options = new FirebaseOptions.Builder()
 	          .setCredential(FirebaseCredentials.fromCertificate(serviceAccount))
@@ -49,8 +49,8 @@ public class App
 			System.out.println("Error " +e.getMessage());
 		}
        
-       PrimeraApplicacion app=new PrimeraApplicacion("app3","C:/Users/daniel.rodriguez/git/firetest/firetest/database/firebase.db3");
-       PrimeraApplicacion app2=new PrimeraApplicacion("app1","C:/Users/daniel.rodriguez/git/firetest/firetest/database/firebase.db3");
+       PrimeraApplicacion app=new PrimeraApplicacion("app3","C:/olbapro/database/firebase.db3");
+       PrimeraApplicacion app2=new PrimeraApplicacion("app1","C:/olbapro/database/firebase.db3");
        
       // PrimeraApplicacion app=new PrimeraApplicacion("app3","C:/borrar/firebase.db3");
      
