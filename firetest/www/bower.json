@@ -8,6 +8,9 @@
     "paper-button": "PolymerElements/paper-button#^2.0.0",
     "paper-card": "PolymerElements/paper-card#^2.0.0",
     "paper-icon-button":"2.0.0",
+    "paper-listbox":"2.0.0",
+    "paper-item":"2.0.0",
+       "paper-item":"2.0.0",
     "iron-icons":"2.0.0",
    	"app-layout":"2.0.0",
     "polymerfire": "^2.2.1"
